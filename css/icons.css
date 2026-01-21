@@ -1,0 +1,245 @@
+@font-face {
+	font-family: 'linecons';
+	src:url('../fonts/linecons/linecons.eot');
+	src:url('../fonts/linecons/linecons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/linecons/linecons.woff') format('woff'),
+		url('../fonts/linecons/linecons.ttf') format('truetype'),
+		url('../fonts/linecons/linecons.svg#linecons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon:before {
+	font-family: 'linecons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;/* remove display none for original styling*/
+	margin-right: 0.6em;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-female:before {
+	content: "\f182";
+	display: none;/* remove display none for original styling*/
+}
+.icon-male:before {
+	content: "\f183";
+	display: none;/* remove display none for original styling*/
+}
+.icon-arrow-left:before {
+	content: "\e032";
+}
+.icon-arrow-left-2:before {
+	content: "\e034";
+}
+.icon-arrow-left-3:before {
+	content: "\e036";
+}
+.icon-arrow-left-4:before {
+	content: "\e038";
+}
+.icon-arrow-right:before {
+	content: "\e035";
+}
+.icon-arrow-right-2:before {
+	content: "\e037";
+}
+.icon-arrow-right-3:before {
+	content: "\e039";
+}
+.icon-arrow-right-4:before {
+	content: "\e033";
+}
+
+.icon-phone:before {
+	content: "\e000";
+	display: none;/* remove display none for original styling*/
+}
+.icon-news:before {
+	content: "\e001";
+	display: none;/* remove display none for original styling*/
+}
+.icon-photo:before {
+	content: "\e002";
+	display: none;/* remove display none for original styling*/
+}
+.icon-shop:before {
+	content: "\e003";
+	display: none;/* remove display none for original styling*/
+}
+.icon-wallet:before {
+	content: "\e004";
+	display: none;/* remove display none for original styling*/
+}
+.icon-t-shirt:before {
+	content: "\e005";
+	display: none;/* remove display none for original styling*/
+}
+.icon-heart:before {
+	content: "\e006";
+	display: none;/* remove display none for original styling*/
+}
+.icon-cloud:before {
+	content: "\e007";
+	display: none;/* remove display none for original styling*/
+}
+.icon-display:before {
+	content: "\e008";
+	display: none;/* remove display none for original styling*/
+}
+.icon-diamond:before {
+	content: "\e009";
+	display: none;/* remove display none for original styling*/
+}
+.icon-banknote:before {
+	content: "\e00a";
+	display: none;/* remove display none for original styling*/
+}
+.icon-data:before {
+	content: "\e00b";
+	display: none;/* remove display none for original styling*/
+}
+.icon-music:before {
+	content: "\e00c";
+	display: none;/* remove display none for original styling*/
+}
+.icon-location:before {
+	content: "\e00d";
+	display: none;/* remove display none for original styling*/
+}
+.icon-star:before {
+	content: "\e00e";
+	display: none;/* remove display none for original styling*/
+}
+.icon-tv:before {
+	content: "\e00f";
+	display: none;/* remove display none for original styling*/
+}
+.icon-eye:before {
+	content: "\e010";
+	display: none;/* remove display none for original styling*/
+}
+.icon-megaphone:before {
+	content: "\e011";
+	display: none;/* remove display none for original styling*/
+}
+.icon-study:before {
+	content: "\e012";
+	display: none;/* remove display none for original styling*/
+}
+.icon-bubble:before {
+	content: "\e013";
+	display: none;/* remove display none for original styling*/
+}
+.icon-sound:before {
+	content: "\e014";
+	display: none;/* remove display none for original styling*/
+}
+.icon-video:before {
+	content: "\e015";
+	display: none;/* remove display none for original styling*/
+}
+.icon-stack:before {
+	content: "\e016";
+	display: none;/* remove display none for original styling*/
+}
+.icon-lab:before {
+	content: "\e017";
+}
+.icon-food:before {
+	content: "\e018";
+	display: none;/* remove display none for original styling*/
+}
+.icon-cup:before {
+	content: "\e019";
+	display: none;/* remove display none for original styling*/
+}
+.icon-trash:before {
+	content: "\e01a";
+}
+.icon-user:before {
+	content: "\e01b";
+	display: none;/* remove display none for original styling*/
+}
+.icon-key:before {
+	content: "\e01c";
+	display: none;/* remove display none for original styling*/
+}
+.icon-fire:before {
+	content: "\e01d";
+	display: none;/* remove display none for original styling*/
+}
+.icon-clip:before {
+	content: "\e01e";
+	display: none;/* remove display none for original styling*/
+}
+.icon-mail:before {
+	content: "\e01f";
+	display: none;/* remove display none for original styling*/
+}
+.icon-search:before {
+	content: "\e020";
+}
+.icon-settings:before {
+	content: "\e021";
+	display: none;/* remove display none for original styling*/
+}
+.icon-like:before {
+	content: "\e022";
+	display: none;/* remove display none for original styling*/
+}
+.icon-calendar:before {
+	content: "\e023";
+	display: none;/* remove display none for original styling*/
+}
+.icon-camera:before {
+	content: "\e024";
+	display: none;/* remove display none for original styling*/
+}
+.icon-tag:before {
+	content: "\e025";
+	display: none;/* remove display none for original styling*/
+}
+.icon-note:before {
+	content: "\e026";
+	display: none;/* remove display none for original styling*/
+}
+.icon-clock:before {
+	content: "\e027";
+	display: none;/* remove display none for original styling*/
+}
+.icon-lock:before {
+	content: "\e028";
+	display: none;/* remove display none for original styling*/
+}
+.icon-vynil:before {
+	content: "\e029";
+	display: none;/* remove display none for original styling*/
+}
+.icon-truck:before {
+	content: "\e02a";
+	display: none;/* remove display none for original styling*/
+}
+.icon-paperplane:before {
+	content: "\e02b";
+	display: none;/* remove display none for original styling*/
+}
+.icon-bulb:before {
+	content: "\e02c";
+	display: none;/* remove display none for original styling*/
+}
+.icon-pen:before {
+	content: "\e02d";
+	display: none;/* remove display none for original styling*/
+}
+.icon-params:before {
+	content: "\e02e";
+	display: none;/* remove display none for original styling*/
+}
+.icon-world:before {
+	content: "\e02f";
+	display: none;/* remove display none for original styling*/
+}
