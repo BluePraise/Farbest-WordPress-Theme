@@ -1,0 +1,71 @@
+# WordPress Theme .gitignore
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# Node modules (if using npm/yarn)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Compiled CSS/JS (if using preprocessors)
+*.css.map
+*.js.map
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Build directories
+/dist/
+/build/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# WordPress specific
+wp-config.php
+.htaccess
+
+# PHPStorm
+.idea/
+
+# Local environment
+.env
+.env.local
+
+# Composer (if used)
+/vendor/
+
+# ACF JSON sync files (optional - comment out if you want to track these)
+# acf-json/
+
+# Project documentation
+PROJECT_AUDIT.md
+
+# Theme specific temp files
+*.orig
