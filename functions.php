@@ -555,7 +555,7 @@ function create_product_taxonomies() {
 		'update_count_callback' => '_update_post_term_count',
 		'query_var'             => true,
 		'rewrite'               => array( 'slug' => 'claim' ),
-		'meta_box_cb'		=> false,
+		'meta_box_cb'		=> false, // ACF Pro handles the meta box
 	);
 
 	register_taxonomy( 'claim', 'products', $args );
@@ -588,7 +588,7 @@ function create_product_taxonomies() {
 		'update_count_callback' => '_update_post_term_count',
 		'query_var'             => true,
 		'rewrite'               => array( 'slug' => 'certification' ),
-		'meta_box_cb'		=> false,
+		'meta_box_cb'		=> false, // ACF Pro handles the meta box
 	);
 
 	register_taxonomy( 'certification', 'products', $args );
@@ -1412,4 +1412,82 @@ function my_acf_json_save_point($path)
 }
 
 add_filter('acf/settings/save_json', 'my_acf_json_save_point');
+
+/**
+ * ACF Pro: Product Taxonomy Fields
+ * Replaces Piklist taxonomy meta boxes for Claims and Certifications
+ */
+add_action('acf/init', 'farbest_register_product_taxonomy_fields');
+function farbest_register_product_taxonomy_fields() {
+    
+    // Field Group: Product Certifications
+    acf_add_local_field_group(array(
+        'key' => 'group_product_certifications',
+        'title' => 'Certifications',
+        'fields' => array(
+            array(
+                'key' => 'field_product_certifications',
+                'label' => 'Certifications',
+                'name' => 'product_certifications',
+                'type' => 'taxonomy',
+                'taxonomy' => 'certification',
+                'field_type' => 'checkbox',
+                'add_term' => 1,
+                'save_terms' => 1,
+                'load_terms' => 1,
+                'return_format' => 'id',
+                'multiple' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'products',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'side',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+    ));
+    
+    // Field Group: Product Claims
+    acf_add_local_field_group(array(
+        'key' => 'group_product_claims',
+        'title' => 'Claims',
+        'fields' => array(
+            array(
+                'key' => 'field_product_claims',
+                'label' => 'Claims',
+                'name' => 'product_claims',
+                'type' => 'taxonomy',
+                'taxonomy' => 'claim',
+                'field_type' => 'checkbox',
+                'add_term' => 1,
+                'save_terms' => 1,
+                'load_terms' => 1,
+                'return_format' => 'id',
+                'multiple' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'products',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'side',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+    ));
+}
 /**/
