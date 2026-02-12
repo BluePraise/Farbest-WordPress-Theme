@@ -235,7 +235,7 @@ add_action( 'init', 'wpt_product_posttype' );
 function add_products_meta_box() {
     add_meta_box(
         'products_meta_box', // $id
-        'Products Meta Box', // $title 
+        'Products Meta Box', // $title
         'show_products_meta_box', // $callback
         'products', // $page
         'normal', // $context
@@ -265,16 +265,16 @@ $products_meta_fields = array(
 				'value' => 'beta_carotene'),
 			'3' => array (
 				'label' => 'Calcium Ascorbate',
-				'value' => 'calcium_ascorbate'),	
+				'value' => 'calcium_ascorbate'),
 			'4' => array (
 				'label' => 'Calcium Caseinate',
-				'value' => 'calcium_caseinate'),	
+				'value' => 'calcium_caseinate'),
 			'5' => array (
 				'label' => 'Calcium d-Pantothenate',
 				'value' => 'calcium_d_pantothenate	'),
 			'6' => array (
 				'label' => 'Casein',
-				'value' => 'caseinonly'),	
+				'value' => 'caseinonly'),
 			'7' => array (
 				'label' => 'Colostrum',
 				'value' => 'colostrum'),
@@ -346,7 +346,7 @@ $products_meta_fields = array(
 				'value' => 'pea_protein'),
 			'30' => array (
 				'label' => 'Plant Proteins - Organic',
-				'value' => 'plant_proteins'),
+				'value' => 'plant_proteins_organic'),
 			'31' => array (
 				'label' => 'Polydextrose',
 				'value' => 'polydextrose'),
@@ -469,13 +469,13 @@ echo '<input type="hidden" name="products_meta_box_nonce" value="'.wp_create_non
 				case 'text':
 					echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
 						<br /><span class="description">'.$field['desc'].'</span>';
-				break;   
+				break;
 					// checkbox_group
 				case 'checkbox_group':
 					echo '<table style="width:100%"><tr><td style="width:50%">';
 					$i = 1;
 					foreach ($field['options'] as $option) {
-						echo '<input type="checkbox" value="'.$option['value'].'" name="'.$field['id'].'[]" id="'.$option['value'].'"',$meta && in_array($option['value'], $meta) ? ' checked="checked"' : '',' /> 
+						echo '<input type="checkbox" value="'.$option['value'].'" name="'.$field['id'].'[]" id="'.$option['value'].'"',$meta && in_array($option['value'], $meta) ? ' checked="checked"' : '',' />
 								<label for="'.$option['value'].'">'.$option['label'].'</label><br />';
 						if ($i == 21) {echo '</td><td style="width:50%">';}
 						$i++;
@@ -495,9 +495,9 @@ echo '<input type="hidden" name="products_meta_box_nonce" value="'.wp_create_non
 				}
 // Save the Data
 function save_products_meta($post_id) {
-    global $products_meta_fields;     
+    global $products_meta_fields;
     // verify nonce
-if (!isset($_POST['products_meta_box_nonce']) || !wp_verify_nonce($_POST['products_meta_box_nonce'], basename(__FILE__))) 
+if (!isset($_POST['products_meta_box_nonce']) || !wp_verify_nonce($_POST['products_meta_box_nonce'], basename(__FILE__)))
         return $post_id;
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -624,7 +624,7 @@ add_action( 'init', 'wpt_homepage_posttype' );
 function add_homepage_meta_box() {
     add_meta_box(
         'homepage_meta_box', // $id
-        'Homepage Meta Box', // $title 
+        'Homepage Meta Box', // $title
         'show_homepage_meta_box', // $callback
         'homepage', // $page
         'normal', // $context
@@ -811,7 +811,7 @@ echo '<input type="hidden" name="homepage_meta_box_nonce" value="'.wp_create_non
 				case 'text':
 					echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
 						<br /><span class="description">'.$field['desc'].'</span>';
-				break;   
+				break;
 					// textarea
 				case 'textarea':
 					echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="60" rows="4">'.$meta.'</textarea>
@@ -824,9 +824,9 @@ echo '<input type="hidden" name="homepage_meta_box_nonce" value="'.wp_create_non
 				}
 // Save the Data
 function save_homepage_meta($post_id) {
-    global $homepage_meta_fields;     
+    global $homepage_meta_fields;
     // verify nonce
-if (!isset($_POST['homepage_meta_box_nonce']) || !wp_verify_nonce($_POST['homepage_meta_box_nonce'], basename(__FILE__))) 
+if (!isset($_POST['homepage_meta_box_nonce']) || !wp_verify_nonce($_POST['homepage_meta_box_nonce'], basename(__FILE__)))
         return $post_id;
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -881,7 +881,7 @@ add_action( 'init', 'wpt_warehousing_posttype' );
 function add_warehousing_meta_box() {
     add_meta_box(
         'warehousing_meta_box', // $id
-        'Warehousing Meta Box', // $title 
+        'Warehousing Meta Box', // $title
         'show_warehousing_meta_box', // $callback
         'warehousing', // $page
         'normal', // $context
@@ -1014,7 +1014,7 @@ echo '<input type="hidden" name="warehousing_meta_box_nonce" value="'.wp_create_
 				case 'text':
 					echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
 						<br /><span class="description">'.$field['desc'].'</span>';
-				break;   
+				break;
 					// textarea
 				case 'textarea':
 					echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="60" rows="4">'.$meta.'</textarea>
@@ -1027,9 +1027,9 @@ echo '<input type="hidden" name="warehousing_meta_box_nonce" value="'.wp_create_
 				}
 // Save the Data
 function save_warehousing_meta($post_id) {
-    global $warehousing_meta_fields;     
+    global $warehousing_meta_fields;
     // verify nonce
-if (!isset($_POST['warehousing_meta_box_nonce']) || !wp_verify_nonce($_POST['warehousing_meta_box_nonce'], basename(__FILE__))) 
+if (!isset($_POST['warehousing_meta_box_nonce']) || !wp_verify_nonce($_POST['warehousing_meta_box_nonce'], basename(__FILE__)))
         return $post_id;
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -1084,7 +1084,7 @@ add_action( 'init', 'wpt_staff_posttype' );
 function add_staff_meta_box() {
     add_meta_box(
         'staff_meta_box', // $id
-        'Staff Meta Box', // $title 
+        'Staff Meta Box', // $title
         'show_staff_meta_box', // $callback
         'staff', // $page
         'normal', // $context
@@ -1169,7 +1169,7 @@ echo '<input type="hidden" name="staff_meta_box_nonce" value="'.wp_create_nonce(
 				case 'text':
 					echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
 						<br /><span class="description">'.$field['desc'].'</span>';
-				break;   
+				break;
 					// textarea
 				case 'textarea':
 					echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="60" rows="4">'.$meta.'</textarea>
@@ -1182,9 +1182,9 @@ echo '<input type="hidden" name="staff_meta_box_nonce" value="'.wp_create_nonce(
 				}
 // Save the Data
 function save_staff_meta($post_id) {
-    global $staff_meta_fields;     
+    global $staff_meta_fields;
     // verify nonce
-if (!isset($_POST['staff_meta_box_nonce']) || !wp_verify_nonce($_POST['staff_meta_box_nonce'], basename(__FILE__))) 
+if (!isset($_POST['staff_meta_box_nonce']) || !wp_verify_nonce($_POST['staff_meta_box_nonce'], basename(__FILE__)))
         return $post_id;
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -1239,7 +1239,7 @@ add_action( 'init', 'wpt_partners_posttype' );
 function add_partners_meta_box() {
     add_meta_box(
         'partners_meta_box', // $id
-        'Partners Meta Box', // $title 
+        'Partners Meta Box', // $title
         'show_partners_meta_box', // $callback
         'partners', // $page
         'normal', // $context
@@ -1300,7 +1300,7 @@ echo '<input type="hidden" name="partners_meta_box_nonce" value="'.wp_create_non
 				case 'text':
 					echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
 						<br /><span class="description">'.$field['desc'].'</span>';
-				break;   
+				break;
 					// textarea
 				case 'textarea':
 					echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="60" rows="4">'.$meta.'</textarea>
@@ -1313,9 +1313,9 @@ echo '<input type="hidden" name="partners_meta_box_nonce" value="'.wp_create_non
 				}
 // Save the Data
 function save_partners_meta($post_id) {
-    global $partners_meta_fields;     
+    global $partners_meta_fields;
     // verify nonce
-if (!isset($_POST['partners_meta_box_nonce']) || !wp_verify_nonce($_POST['partners_meta_box_nonce'], basename(__FILE__))) 
+if (!isset($_POST['partners_meta_box_nonce']) || !wp_verify_nonce($_POST['partners_meta_box_nonce'], basename(__FILE__)))
         return $post_id;
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -1344,14 +1344,14 @@ add_action('save_post', 'save_partners_meta');
 
 function wpb_change_title_text( $title ){
      $screen = get_current_screen();
- 
+
      if  ( 'products' == $screen->post_type ) {
           $title = 'Enter product name';
      }
- 
+
      return $title;
 }
- 
+
 add_filter( 'enter_title_here', 'wpb_change_title_text' );
 
 // Replaces the excerpt "more" text by a link
@@ -1363,7 +1363,7 @@ add_filter('excerpt_more', 'new_excerpt_more');
 
 //sort taxonomy archives
 
-add_action( 'pre_get_posts', 'my_change_sort_order'); 
+add_action( 'pre_get_posts', 'my_change_sort_order');
     function my_change_sort_order($query){
         if(is_archive()):
          //If you wanted it for the archive of a custom post type use: is_post_type_archive( $post_type )
@@ -1371,9 +1371,9 @@ add_action( 'pre_get_posts', 'my_change_sort_order');
            $query->set( 'order', 'ASC' );
            //Set the orderby
            $query->set( 'orderby', 'title' );
-        endif;    
+        endif;
     };
-    
+
 // custom post nav to stay in category
 
 function custom_nav(){
@@ -1398,6 +1398,142 @@ function posts_in_category($query){
         }
     }
 }
+/**
+ * AJAX handler for Filter Demo - Get Ingredients
+ */
+function ajax_get_ingredients_filter_demo() {
+    $args = array(
+        'post_type' => 'products',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'orderby' => 'title',
+        'order' => 'ASC'
+    );
+
+    $query = new WP_Query($args);
+    $ingredients = array();
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+
+            // Get categories from meta field
+            $categories = array();
+            $meta_categories = get_post_meta(get_the_ID(), 'products_categories', true);
+
+            if (is_array($meta_categories)) {
+                $categories = $meta_categories;
+            }
+
+            // Get description
+            $description = get_post_meta(get_the_ID(), 'products_description', true);
+
+            // Get thumbnail
+            $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+
+            // Get claims
+            $claims = get_the_terms(get_the_ID(), 'claim');
+            $claim_names = array();
+            if ($claims && !is_wp_error($claims)) {
+                foreach ($claims as $claim) {
+                    $claim_names[] = $claim->name;
+                }
+            }
+
+            // Get certifications
+            $certifications = get_the_terms(get_the_ID(), 'certification');
+            $cert_names = array();
+            if ($certifications && !is_wp_error($certifications)) {
+                foreach ($certifications as $cert) {
+                    $cert_names[] = $cert->name;
+                }
+            }
+
+            $ingredients[] = array(
+                'id' => get_the_ID(),
+                'title' => get_the_title(),
+                'description' => $description,
+                'excerpt' => $description ? wp_trim_words($description, 20) : '',
+                'link' => get_permalink(),
+                'thumbnail' => $thumbnail ? $thumbnail : '',
+                'categories' => $categories,
+                'claims' => $claim_names,
+                'certifications' => $cert_names,
+                'date' => get_the_date('c')
+            );
+        }
+        wp_reset_postdata();
+    }
+    wp_send_json_success($ingredients);
+}
+add_action('wp_ajax_get_ingredients_filter_demo', 'ajax_get_ingredients_filter_demo');
+add_action('wp_ajax_nopriv_get_ingredients_filter_demo', 'ajax_get_ingredients_filter_demo');
+
+/**
+ * Get ingredient categories list
+ */
+function get_ingredient_categories() {
+    return array(
+        'ascorbic_acid' => 'Ascorbic Acid',
+        'beta_carotene' => 'Beta-carotene',
+        'calcium_ascorbate' => 'Calcium Ascorbate',
+        'calcium_caseinate' => 'Calcium Caseinate',
+        'calcium_d_pantothenate' => 'Calcium d-Pantothenate',
+        'caseinonly' => 'Casein',
+        'colostrum' => 'Colostrum',
+        'crystalline_fructose' => 'Crystalline Fructose',
+        'cyanocobalamin' => 'Cyanocobalamin',
+        'd_biotin' => 'd-Biotin',
+        'fibers' => 'Fibers - Organic',
+        'food_ingredients' => 'Food Ingredients - Organic',
+        'folic_acid' => 'Folic Acid',
+        'fruits_&_fruit_powders' => 'Fruits & Fruit Powders',
+        'gum_acaciaonly' => 'Gum Acacia',
+        'gum_acacia_organic' => 'Gum Acacia - Organic',
+        'hydrolysates' => 'Hydrolysates',
+        'juice_&_concentrates' => 'Juice & Concentrates - Organic',
+        'lactoferrin' => 'Lactoferrin',
+        'lactoperoxidase' => 'Lactoperoxidase',
+        'lutein' => 'Lutein',
+        'lycopene' => 'Lycopene',
+        'methylcobalamin' => 'Methylcobalamin',
+        'milk_protein' => 'Milk Protein',
+        'monk_fruit' => 'Monk Fruit',
+        'niacinonly' => 'Niacin',
+        'niacinamide' => 'Niacinamide',
+        'nutrient_premixes_&_blends' => 'Nutrient Premixes & Blends',
+        'pea_protein' => 'Pea Protein',
+        'plant_proteins_organic' => 'Plant Proteins - Organic',
+        'polydextrose' => 'Polydextrose',
+        'pyridoxine' => 'Pyridoxine',
+        'riboflavin' => 'Riboflavin',
+        'rice_protein' => 'Rice Protein',
+        'sodium_ascorbate' => 'Sodium Ascorbate',
+        'sodium_caseinate' => 'Sodium Caseinate',
+        'soy_protein' => 'Soy Protein',
+        'specialty' => 'Specialty Caseinate',
+        'supplements' => 'Supplements',
+        'sweeteners' => 'Sweeteners',
+        'thiamine' => 'Thiamine',
+        'vitamin_a' => 'Vitamin A',
+        'vitamin_d' => 'Vitamin D',
+        'vitamin_e' => 'Vitamin E',
+        'vitamin_k' => 'Vitamin K',
+        'whey_protein' => 'Whey Protein',
+        'weighting_agents' => 'Weighting Agents',
+        'pea_protein_ngpv' => 'Pea Protein NGPV',
+        'gum_acacia_ngpv' => 'Gum Acacia NGPV',
+        'soy_protein_ngpv' => 'Soy Protein NGPV',
+        'lecithins_ngpv' => 'Lecithin NGPV',
+        'sweeteners_ngpv' => 'Sweeteners NGPV',
+        'fiber_ngpv' => 'Fiber NGPV',
+        'dairy_protein_ngpv' => 'Dairy Protein NGPV',
+        'omega_3_fish_oil' => 'Omega-3 Fish Oil',
+        'lecithin' => 'Lecithin',
+        'sweeteners_organic' => 'Sweeteners Organic'
+    );
+}
+
 /***
  * ACF CUSTOMIZATION
  */
