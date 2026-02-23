@@ -69,8 +69,74 @@ get_header(); ?>
                             </div>
                         </div>
 
-                        <!-- Sort Options -->
+                        <!-- Label Claims Filter -->
                         <div class="col-md-3">
+                            <label class="form-label fw-bold">Label Claims</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="claimsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="claimsLabel">All Claims</span>
+                                </button>
+                                <div class="dropdown-menu p-3" style="min-width: 300px; width: 100%;" onclick="event.stopPropagation();">
+                                    <?php
+                                    $claims_terms = get_terms(array(
+                                        'taxonomy' => 'claim',
+                                        'hide_empty' => true,
+                                        'orderby' => 'name',
+                                        'order' => 'ASC'
+                                    ));
+
+                                    if (!empty($claims_terms) && !is_wp_error($claims_terms)) {
+                                        foreach ($claims_terms as $term) : ?>
+                                            <div class="form-check">
+                                                <input class="form-check-input claims-filter" type="checkbox" value="<?php echo esc_attr($term->slug); ?>" id="claim-<?php echo esc_attr($term->slug); ?>" data-name="<?php echo esc_attr($term->name); ?>">
+                                                <label class="form-check-label" for="claim-<?php echo esc_attr($term->slug); ?>">
+                                                    <?php echo esc_html($term->name); ?> [<?php echo $term->count; ?>]
+                                                </label>
+                                            </div>
+                                        <?php endforeach;
+                                    } else {
+                                        echo '<div class="text-muted small">No claims available</div>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certifications Filter -->
+                        <div class="col-md-3">
+                            <label class="form-label fw-bold">Certifications</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="certificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="certificationsLabel">All Certifications</span>
+                                </button>
+                                <div class="dropdown-menu p-3" style="min-width: 300px; width: 100%;" onclick="event.stopPropagation();">
+                                    <?php
+                                    $certification_terms = get_terms(array(
+                                        'taxonomy' => 'certification',
+                                        'hide_empty' => true,
+                                        'orderby' => 'name',
+                                        'order' => 'ASC'
+                                    ));
+
+                                    if (!empty($certification_terms) && !is_wp_error($certification_terms)) {
+                                        foreach ($certification_terms as $term) : ?>
+                                            <div class="form-check">
+                                                <input class="form-check-input certifications-filter" type="checkbox" value="<?php echo esc_attr($term->slug); ?>" id="cert-<?php echo esc_attr($term->slug); ?>" data-name="<?php echo esc_attr($term->name); ?>">
+                                                <label class="form-check-label" for="cert-<?php echo esc_attr($term->slug); ?>">
+                                                    <?php echo esc_html($term->name); ?> [<?php echo $term->count; ?>]
+                                                </label>
+                                            </div>
+                                        <?php endforeach;
+                                    } else {
+                                        echo '<div class="text-muted small">No certifications available</div>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="col-md-2">
                             <label for="sortBy" class="form-label fw-bold">Sort By</label>
                             <select class="form-select" id="sortBy">
                                 <option value="name-asc">Name (A-Z)</option>
@@ -81,8 +147,9 @@ get_header(); ?>
                         </div>
 
                         <!-- Reset Button -->
-                        <div class="col-md-2">
-                            <button class="btn btn-outline-secondary w-100" id="resetFilters">Reset Filters</button>
+                        <div class="col-md-1">
+                            <label class="form-label fw-bold">&nbsp;</label>
+                            <button class="btn btn-outline-danger w-100" id="resetFilters" title="Reset all filters"><i class="bi bi-x-circle"></i> Reset</button>
                         </div>
                     </div>
                 </div>
@@ -178,6 +245,12 @@ jQuery(document).ready(function($) {
         const selectedCategories = $('.category-filter:checked').map(function() {
             return $(this).val();
         }).get();
+        const selectedClaims = $('.claims-filter:checked').map(function() {
+            return $(this).data('name');
+        }).get();
+        const selectedCertifications = $('.certifications-filter:checked').map(function() {
+            return $(this).data('name');
+        }).get();
         const sortBy = $('#sortBy').val();
 
         // Filter by search
@@ -190,8 +263,17 @@ jQuery(document).ready(function($) {
             const matchesCategory = selectedCategories.length === 0 ||
                 ingredient.categories.some(cat => selectedCategories.includes(cat));
 
-            return matchesSearch && matchesCategory;
+            const matchesClaims = selectedClaims.length === 0 ||
+                (ingredient.claims && ingredient.claims.some(claim => selectedClaims.includes(claim)));
+
+            const matchesCertifications = selectedCertifications.length === 0 ||
+                (ingredient.certifications && ingredient.certifications.some(cert => selectedCertifications.includes(cert)));
+
+            return matchesSearch && matchesCategory && matchesClaims && matchesCertifications;
         });
+
+        // Update available filter options
+        updateAvailableFilters();
 
         // Sort
         filteredIngredients.sort(function(a, b) {
@@ -331,6 +413,16 @@ jQuery(document).ready(function($) {
         updateCategoryLabel();
     });
 
+    $('.claims-filter').on('change', function() {
+        applyFilters();
+        updateClaimsLabel();
+    });
+
+    $('.certifications-filter').on('change', function() {
+        applyFilters();
+        updateCertificationsLabel();
+    });
+
     $('#sortBy').on('change', function() {
         applyFilters();
     });
@@ -338,8 +430,12 @@ jQuery(document).ready(function($) {
     $('#resetFilters').on('click', function() {
         $('#ingredientSearch').val('');
         $('.category-filter').prop('checked', false);
+        $('.claims-filter').prop('checked', false);
+        $('.certifications-filter').prop('checked', false);
         $('#sortBy').val('name-asc');
         updateCategoryLabel();
+        updateClaimsLabel();
+        updateCertificationsLabel();
         applyFilters();
     });
 
@@ -353,6 +449,129 @@ jQuery(document).ready(function($) {
         } else {
             $('#categoryLabel').text(selectedCount + ' Categories Selected');
         }
+    }
+
+    // Update claims dropdown label
+    function updateClaimsLabel() {
+        const selectedCount = $('.claims-filter:checked').length;
+        if (selectedCount === 0) {
+            $('#claimsLabel').text('All Claims');
+        } else if (selectedCount === 1) {
+            $('#claimsLabel').text('1 Claim Selected');
+        } else {
+            $('#claimsLabel').text(selectedCount + ' Claims Selected');
+        }
+    }
+
+    // Update certifications dropdown label
+    function updateCertificationsLabel() {
+        const selectedCount = $('.certifications-filter:checked').length;
+        if (selectedCount === 0) {
+            $('#certificationsLabel').text('All Certifications');
+        } else if (selectedCount === 1) {
+            $('#certificationsLabel').text('1 Certification Selected');
+        } else {
+            $('#certificationsLabel').text(selectedCount + ' Certifications Selected');
+        }
+    }
+
+    // Update available filter options based on current results
+    function updateAvailableFilters() {
+        // Count available categories, claims, and certifications in filtered results
+        const availableCategories = {};
+        const availableClaims = {};
+        const availableCertifications = {};
+
+        filteredIngredients.forEach(function(ingredient) {
+            // Count categories
+            if (ingredient.categories) {
+                ingredient.categories.forEach(function(cat) {
+                    availableCategories[cat] = (availableCategories[cat] || 0) + 1;
+                });
+            }
+
+            // Count claims
+            if (ingredient.claims) {
+                ingredient.claims.forEach(function(claim) {
+                    availableClaims[claim] = (availableClaims[claim] || 0) + 1;
+                });
+            }
+
+            // Count certifications
+            if (ingredient.certifications) {
+                ingredient.certifications.forEach(function(cert) {
+                    availableCertifications[cert] = (availableCertifications[cert] || 0) + 1;
+                });
+            }
+        });
+
+        // Update category filters
+        $('.category-filter').each(function() {
+            const checkbox = $(this);
+            const parent = checkbox.closest('.form-check');
+            const label = parent.find('label');
+            const categorySlug = checkbox.val();
+            const categoryLabel = categoryLabels[categorySlug] || categorySlug;
+            const count = availableCategories[categorySlug] || 0;
+            const isChecked = checkbox.is(':checked');
+
+            if (count > 0 || isChecked) {
+                parent.show();
+                checkbox.prop('disabled', false);
+                parent.css('opacity', '1');
+                // Update count in label if it exists
+                label.html(categoryLabel);
+            } else {
+                parent.show();
+                checkbox.prop('disabled', true);
+                parent.css('opacity', '0.4');
+                label.html(categoryLabel + ' <span class="text-muted">(0)</span>');
+            }
+        });
+
+        // Update claims filters
+        $('.claims-filter').each(function() {
+            const checkbox = $(this);
+            const parent = checkbox.closest('.form-check');
+            const label = parent.find('label');
+            const claimName = checkbox.data('name');
+            const count = availableClaims[claimName] || 0;
+            const isChecked = checkbox.is(':checked');
+
+            if (count > 0 || isChecked) {
+                parent.show();
+                checkbox.prop('disabled', false);
+                parent.css('opacity', '1');
+                label.html(claimName + ' [' + count + ']');
+            } else {
+                parent.show();
+                checkbox.prop('disabled', true);
+                parent.css('opacity', '0.4');
+                label.html(claimName + ' <span class="text-muted">[0]</span>');
+            }
+        });
+
+        // Update certifications filters
+        $('.certifications-filter').each(function() {
+            const checkbox = $(this);
+            const parent = checkbox.closest('.form-check');
+            const label = parent.find('label');
+            const certName = checkbox.data('name');
+            const count = availableCertifications[certName] || 0;
+            const isChecked = checkbox.is(':checked');
+
+            if (count > 0 || isChecked) {
+                parent.show();
+                checkbox.prop('disabled', false);
+                parent.css('opacity', '1');
+                label.html(certName + ' [' + count + ']');
+            } else {
+                parent.show();
+                checkbox.prop('disabled', true);
+                parent.css('opacity', '0.4');
+                label.html(certName + ' <span class="text-muted">[0]</span>');
+            }
+        });
     }
 
     // View toggle
@@ -423,6 +642,24 @@ jQuery(document).ready(function($) {
 
 .list-view-card img {
     max-height: 200px;
+}
+
+/* Filter dropdown styles */
+.form-check input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+}
+
+.form-check input[type="checkbox"]:disabled + label {
+    cursor: not-allowed;
+    color: #999;
+}
+
+.dropdown-menu .form-check {
+    transition: opacity 0.2s ease;
+}
+
+.text-muted {
+    font-weight: normal;
 }
 </style>
 
