@@ -1402,6 +1402,12 @@ function posts_in_category($query){
  * AJAX handler for Filter Demo - Get Ingredients
  */
 function ajax_get_ingredients_filter_demo() {
+    // Verify nonce for security (optional - allows both logged in and logged out users)
+    if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'filter_demo_nonce')) {
+        wp_send_json_error('Invalid security token');
+        return;
+    }
+
     $args = array(
         'post_type' => 'products',
         'posts_per_page' => -1,

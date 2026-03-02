@@ -222,7 +222,8 @@ jQuery(document).ready(function($) {
             url: '<?php echo admin_url('admin-ajax.php'); ?>',
             type: 'POST',
             data: {
-                action: 'get_ingredients_filter_demo'
+                action: 'get_ingredients_filter_demo',
+                nonce: '<?php echo wp_create_nonce('filter_demo_nonce'); ?>'
             },
             success: function(response) {
                 if (response.success) {
