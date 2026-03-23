@@ -43,6 +43,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Galleries
 --------------------------------------------------------------*/
 
+:root {
+	/* --background-color: #ffffff; */
+}
+
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -422,7 +426,7 @@ color:#999;
 ul.lp-bullet-list {
 	margin:1.5rem 0;
 	line-height: 2;
-	
+
 }
 dt {
 	font-weight: bold;
@@ -1015,7 +1019,7 @@ body.error404 {background: url('images/watermark.png') #e8f2fc no-repeat center 
 body.page-template-page-lpd {background: linear-gradient(100deg, #ffffff, #f2efe9);}
 
 /* change page background to beige on these pages only */
-body.page-template-page-ingredients, 
+body.page-template-page-ingredients,
 body.page-template-page-team,
 body.page-template-page-whouse,
 body.page-template-page-warehousing,
@@ -1063,9 +1067,9 @@ font-weight:300;
 }
 
 h2 {
-font-size:48px;
-font-weight:300;
-margin-top: 80px;
+	font-size:48px;
+	font-weight:300;
+	margin-top: 80px;
 }
 
 h2.home {
@@ -1114,12 +1118,12 @@ font-weight:400;
 text-transform:uppercase;
 margin:0;
 padding:0;
-} 
+}
 h6.home   {
 font-size:1.3em;
 font-weight:300;
 text-transform:unset;
-} 
+}
 .note {font-size:14px;}
 /*p.intro {font-size: 1.7rem;}*/
 
@@ -1436,7 +1440,7 @@ ul#menu-ingredients-desktop {display:none;}
 
 #menu-ingredients-desktop li {
     position:relative;
-} 
+}
 
 #menu-ingredients-desktop ul.sub-menu li a {background:#f3f3f3;padding-left:42px}
 
@@ -1453,7 +1457,7 @@ ul#menu-ingredients-desktop {display:none;}
         content: "\f107";
 		font-size: 18px;
 }
-    
+
 #dc_jqaccordion_widget-2-item ul a.dcjq-parent.active:before {
         position:absolute;
         font-family: 'Font Awesome 5 Free';
@@ -1503,7 +1507,7 @@ color:#fff;
 h3.wh {
 /*font-size:1.8em; orignal size */
 font-size: clamp(1.6rem, -0.875rem + 8.333vw, 2.3rem);
-margin: 36px 0 0px;	
+margin: 36px 0 0px;
 font-weight:300;
 }
 
@@ -1671,7 +1675,7 @@ blockquote.profile	 {
     margin: 0 auto;
     display: block;
     text-align: center;
-    width:50%; 
+    width:50%;
 }
 
 div.partner-title {
@@ -1693,13 +1697,13 @@ margin-bottom:40px;
 }
 
 .fadeout {
-    position: relative; 
+    position: relative;
     top:-30px;
     height: 30px;
     /*background: -webkit-linear-gradient(
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 1) 100%
-    ); 
+    );
     background-image: -moz-linear-gradient(
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 1) 100%
@@ -1747,7 +1751,7 @@ overflow:hidden;
 	position:relative;
 }
 .nofade {
-    position: relative; 
+    position: relative;
     top:-30px;
     height: 30px;
     background: none;
@@ -1944,7 +1948,7 @@ a:hover h5 span.clear-button {color:#5f9732;}
 a:hover .clear-button {
     color:#5f9732;
     transform:translateX(6px);
-    transition: all 100ms linear 0s; 
+    transition: all 100ms linear 0s;
 -webkit-transform:translateX(6px);
 -webkit-transition: all 100ms linear 0s;
 }
@@ -2080,7 +2084,7 @@ div.locationWrapper {max-width:1440px; -ms-flex-wrap:wrap;flex-wrap:wrap;}
 	 h4.partner-title {font-size: 1.1em;height: 30px;}
 	.partner-logo {width: 100%;}
 	.threeWide {margin-bottom: 20px;}
-	
+
 }
 
 @media screen and (max-width:750px) {
@@ -2092,54 +2096,54 @@ div.locationWrapper {max-width:1440px; -ms-flex-wrap:wrap;flex-wrap:wrap;}
 		display: none;
 		background:#f7f7f7;
 	}
-	
+
 	.main-navigation a {height:inherit;}
-	
+
 	.main-navigation li {float: none;}
-	
+
 	.logo {margin-left:10px;}
-	
+
 	#ingredientMenu {display:none;}
-	
+
 	.fb_menu_trigger {display:block;position: absolute;right: 25px;top: 30px;}
-	
+
 	.fb_content_ingred {margin-left: 0px}
-	
+
 	#sampleFormAlt {display:block;margin-left:0px;}
-	
+
 	#leftFooter, #centerFooter, #rightFooter {float:none;width:100%}
-	
+
 	#centerFooter, #rightFooter {padding:0;margin-top:20px;}
-	
+
 	#rightFooter {padding-bottom:20px;}
-	
+
 	.stack {display:block;background-color: #2c424b;}
-	
+
 	#centerFooter { border-left: none;border-right: none;}
-	
+
 	.twoWide {
 		float: none;
 		margin: 0 35px;
 		text-align: left;
 		width	:inherit;
 	}
-	
+
 	#custom-image {background-image: none !important;background-color:#b5be01;}
-	
+
 	#custom-image img {display: none !important;}
-	
+
 	#custom-image h2 {color: #fff;font-size:1.8em;}
-	
+
 	.custImgWh, .custImgPart {}
-	
+
 	.intro-centered {font-size: 1.1em;margin: 30px 0;}
-	
+
 	#row-wrapper .threeWide {width: 100%;padding:0;}
-	
+
 	#row-wrapper h1.wh {font-size: 2em;}
-	
+
 	.threeWide {width:100%}
-	
+
 	.left60, .left65 {float:none;width:100%}
 	.left40, .left35 {width:inherit;text-align:left;}
 	.hb_other {padding: 0;}
@@ -2149,7 +2153,7 @@ div.locationWrapper {max-width:1440px; -ms-flex-wrap:wrap;flex-wrap:wrap;}
 .right70 {float:right; width:100%; text-align:center;}
 .right30 {float:right;width:100%;text-align:center;margin:28px auto 0;}
 	#offerings .threeWide, #row-wrapper .threeWide {width:100%;padding-bottom: 20px;}
-	
+
 #offerings .threeWide:nth-child(2) {
   border-left: none;
   border-right: none;
@@ -2160,7 +2164,7 @@ height:inherit;
 }
 
 #hero img.home {/*width:70%;*/}
-	
+
 #hero h1.home {font-size: 1.8em;padding-bottom: 5.5em;}
 h1.lpd {font-size:2em; margin-top:0;}
 h2.wh {
@@ -2218,7 +2222,7 @@ h2.home { font-size: 2.3em;
     font-weight: 300;
     line-height: 1.05;
     margin-top: 40px;}
-    
+
 h3.home {
     font-size: 2.2rem;
     font-weight: 300;
@@ -2238,10 +2242,10 @@ p.promo-subtext {font-size:28px !important;}
 }
 
 /* iPhone Portrait and Landscape */
-@media only screen 
-  and (min-width: 320px) 
+@media only screen
+  and (min-width: 320px)
   and (max-width: 568px) {
-	  
+
 	#primary_nav_wrap ul {display:none !important;}
 	#primary_nav_wrap {display:none !important;}
 	/*div#hero img {max-width:80%;}*/
@@ -2250,15 +2254,15 @@ p.promo-subtext {font-size:28px !important;}
 }
 
 /* Portrait tablet */
-@media screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+@media screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-	  
+
 	#primary_nav_wrap ul {
 	 display:none !important;}
-	 
+
 	 #primary_nav_wrap {
 	 display:none !important;
 }
@@ -2266,10 +2270,10 @@ p.promo-subtext {font-size:28px !important;}
 		font-size:40px;
 		margin-top:20px;
 	}
-	 
+
 }
 
-@media screen 
+@media screen
   and (max-width: 768px) {
   #primary_nav_wrap {
 	 display:none !important;}

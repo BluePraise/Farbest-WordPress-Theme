@@ -1,0 +1,509 @@
+/*
+ * farbest.css
+ * Farbest — Demo Page Styles
+ * Version: 1.0.0
+ * Date: 2026-03-23
+ * =========================================
+ */
+
+/* =========================================
+   BASE RESET
+   ========================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+}
+
+/* =========================================
+   CUSTOM PROPERTIES
+   ========================================= */
+
+:root {
+    /* Spacing scale */
+    --fb-spacer-1: 0.25rem;
+    --fb-spacer-2: 0.5rem;
+    --fb-spacer-3: 1rem;
+    --fb-spacer-4: 1.5rem;
+    --fb-spacer-5: 3rem;
+
+    /* Colors */
+    --fb-color-primary:   #0d6efd;
+    --fb-color-secondary: #6c757d;
+    --fb-color-danger:    #dc3545;
+    --fb-color-light:     #f8f9fa;
+    --fb-color-muted:     #6c757d;
+    --fb-color-border:    rgba(0, 0, 0, 0.15);
+    --fb-color-text:      #212529;
+
+    /* Border radius */
+    --fb-border-radius: 0.375rem;
+
+    /* Grid gutters (overridden by .g-* classes) */
+    --fb-gutter-x: 1.5rem;
+    --fb-gutter-y: 0;
+}
+
+/* =========================================
+   LAYOUT — CONTAINER
+   ========================================= */
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+@media (min-width: 576px)  { .container { max-width: 540px;  } }
+@media (min-width: 768px)  { .container { max-width: 720px;  } }
+@media (min-width: 992px)  { .container { max-width: 960px;  } }
+@media (min-width: 1200px) { .container { max-width: 1140px; } }
+@media (min-width: 1400px) { .container { max-width: 1320px; } }
+
+/* =========================================
+   LAYOUT — GRID
+   ========================================= */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right:  calc(var(--fb-gutter-x) * -0.5);
+    margin-left:   calc(var(--fb-gutter-x) * -0.5);
+    margin-top:    calc(var(--fb-gutter-y) * -1);
+}
+
+.row > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--fb-gutter-x) * 0.5);
+    padding-left:  calc(var(--fb-gutter-x) * 0.5);
+    margin-top: var(--fb-gutter-y);
+}
+
+/* Gutters */
+.g-0 { --fb-gutter-x: 0;      --fb-gutter-y: 0;    }
+.g-3 { --fb-gutter-x: 1rem;   --fb-gutter-y: 1rem; }
+.g-4 { --fb-gutter-x: 1.5rem; --fb-gutter-y: 1.5rem; }
+
+/* Columns — mobile first (full width on small screens) */
+.col        { flex: 1 0 0%; }
+.col-12     { flex: 0 0 auto; width: 100%; }
+
+@media (min-width: 768px) {
+    .col-md-1  { flex: 0 0 auto; width: 8.3333%;  }
+    .col-md-2  { flex: 0 0 auto; width: 16.6667%; }
+    .col-md-3  { flex: 0 0 auto; width: 25%;      }
+    .col-md-4  { flex: 0 0 auto; width: 33.3333%; }
+    .col-md-9  { flex: 0 0 auto; width: 75%;      }
+    .col-md-10 { flex: 0 0 auto; width: 83.3333%; }
+}
+
+/* Multi-column row helpers */
+.row-cols-1 > * { flex: 0 0 auto; width: 100%; }
+
+@media (min-width: 768px) {
+    .row-cols-md-2 > * { flex: 0 0 auto; width: 50%; }
+}
+
+@media (min-width: 992px) {
+    .row-cols-lg-4 > * { flex: 0 0 auto; width: 25%; }
+}
+
+/* =========================================
+   SPACING UTILITIES
+   ========================================= */
+
+.mb-0 { margin-bottom: 0                   !important; }
+.mb-2 { margin-bottom: var(--fb-spacer-2)  !important; }
+.mb-3 { margin-bottom: var(--fb-spacer-3)  !important; }
+.mb-4 { margin-bottom: var(--fb-spacer-4)  !important; }
+.mt-0 { margin-top: 0                      !important; }
+.me-1 { margin-right: var(--fb-spacer-1)   !important; }
+
+.my-5 {
+    margin-top:    var(--fb-spacer-5) !important;
+    margin-bottom: var(--fb-spacer-5) !important;
+}
+
+.py-5 {
+    padding-top:    var(--fb-spacer-5) !important;
+    padding-bottom: var(--fb-spacer-5) !important;
+}
+
+.p-3 { padding: var(--fb-spacer-3) !important; }
+
+/* =========================================
+   FLEX & DISPLAY UTILITIES
+   ========================================= */
+
+.d-flex         { display: flex         !important; }
+.d-block        { display: block        !important; }
+.d-none         { display: none         !important; }
+.d-inline-block { display: inline-block !important; }
+
+.flex-shrink-0          { flex-shrink: 0             !important; }
+.justify-content-between { justify-content: space-between !important; }
+.justify-content-center  { justify-content: center        !important; }
+.align-items-center     { align-items: center         !important; }
+.align-items-end        { align-items: flex-end       !important; }
+
+.gap-2 { gap: 0.5rem !important; }
+.gap-3 { gap: 1rem   !important; }
+
+/* =========================================
+   SIZING UTILITIES
+   ========================================= */
+
+.h-100 { height: 100% !important; }
+.w-100 { width:  100% !important; }
+
+/* =========================================
+   TYPOGRAPHY UTILITIES
+   ========================================= */
+
+.lead        { font-size: 1.25rem; font-weight: 300; }
+.fw-bold     { font-weight: 700  !important; }
+.fw-normal   { font-weight: 400  !important; }
+.text-muted  { color: var(--fb-color-muted) !important; }
+.text-center { text-align: center  !important; }
+.text-nowrap { white-space: nowrap !important; }
+
+small, .small { font-size: 0.875em; }
+
+/* =========================================
+   COLOR & BACKGROUND UTILITIES
+   ========================================= */
+
+.bg-light       { background-color: var(--fb-color-light)     !important; }
+.bg-secondary   { background-color: var(--fb-color-secondary) !important; }
+.bg-transparent { background-color: transparent               !important; }
+.text-primary   { color: var(--fb-color-primary)              !important; }
+
+/* =========================================
+   CARD COMPONENT
+   ========================================= */
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: var(--fb-border-radius);
+    overflow: hidden;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.card-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card-text {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.border-top-0 { border-top: 0 !important; }
+
+/* =========================================
+   BUTTON COMPONENT
+   ========================================= */
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: var(--fb-border-radius);
+    text-decoration: none;
+    transition: color 0.15s ease-in-out,
+                background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out,
+                box-shadow 0.15s ease-in-out;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--fb-color-primary);
+    outline-offset: 2px;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+}
+
+/* Primary */
+.btn-primary {
+    color: #fff;
+    background-color: var(--fb-color-primary);
+    border-color: var(--fb-color-primary);
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Outline Secondary */
+.btn-outline-secondary {
+    color: var(--fb-color-secondary);
+    border-color: var(--fb-color-secondary);
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary.active {
+    color: #fff;
+    background-color: var(--fb-color-secondary);
+    border-color: var(--fb-color-secondary);
+}
+
+/* Outline Danger */
+.btn-outline-danger {
+    color: var(--fb-color-danger);
+    border-color: var(--fb-color-danger);
+}
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: var(--fb-color-danger);
+    border-color: var(--fb-color-danger);
+}
+
+/* Button Group */
+.btn-group {
+    display: inline-flex;
+    vertical-align: middle;
+}
+.btn-group > .btn {
+    border-radius: 0;
+}
+.btn-group > .btn:first-child { border-radius: var(--fb-border-radius) 0 0 var(--fb-border-radius); }
+.btn-group > .btn:last-child  { border-radius: 0 var(--fb-border-radius) var(--fb-border-radius) 0; }
+.btn-group > .btn + .btn      { margin-left: -1px; }
+
+/* =========================================
+   FORM COMPONENTS
+   ========================================= */
+
+.form-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--fb-color-text);
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: var(--fb-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-select-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+}
+
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    min-height: 1.5rem;
+}
+
+.form-check-input {
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    cursor: pointer;
+    accent-color: var(--fb-color-primary);
+}
+
+.form-check-label {
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+/* =========================================
+   DROPDOWN COMPONENT
+   ========================================= */
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top:    0.3em solid;
+    border-right:  0.3em solid transparent;
+    border-bottom: 0;
+    border-left:   0.3em solid transparent;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 10rem;
+    background-color: #fff;
+    border: 1px solid var(--fb-color-border);
+    border-radius: var(--fb-border-radius);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+/* =========================================
+   ALERT COMPONENT
+   ========================================= */
+
+.alert {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--fb-border-radius);
+}
+
+.alert-info {
+    color: #055160;
+    background-color: #cff4fc;
+    border-color: #b6effb;
+}
+
+.alert-heading {
+    color: inherit;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* =========================================
+   BADGE COMPONENT
+   ========================================= */
+
+.badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--fb-border-radius);
+}
+
+/* =========================================
+   SPINNER COMPONENT
+   ========================================= */
+
+.spinner-border {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: -0.125em;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: fb-spin 0.75s linear infinite;
+}
+
+@keyframes fb-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* =========================================
+   IMAGE UTILITIES
+   ========================================= */
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.rounded-start {
+    border-top-left-radius:    var(--fb-border-radius) !important;
+    border-bottom-left-radius: var(--fb-border-radius) !important;
+}
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px         !important;
+    height: 1px        !important;
+    padding: 0         !important;
+    margin: -1px       !important;
+    overflow: hidden   !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0          !important;
+}
