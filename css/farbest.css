@@ -18,12 +18,7 @@
 
 body {
     margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
+    color: #383836;
 }
 
 /* =========================================
@@ -46,13 +41,23 @@ body {
     --fb-color-muted:     #6c757d;
     --fb-color-border:    rgba(0, 0, 0, 0.15);
     --fb-color-text:      #212529;
+    --fb-color-moss-green: #5C643A;
 
     /* Border radius */
     --fb-border-radius: 0.375rem;
 
+    --fb-border: 1px solid #383836;/*warm grey*/
+
     /* Grid gutters (overridden by .g-* classes) */
     --fb-gutter-x: 1.5rem;
     --fb-gutter-y: 0;
+}
+
+.fb-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #5C643A; /* Moss Green */
 }
 
 /* =========================================
@@ -175,6 +180,8 @@ body {
    TYPOGRAPHY UTILITIES
    ========================================= */
 
+h1, h2, h3, h4, h5, h6 { color: #4D7B29; }
+
 .lead        { font-size: 1.25rem; font-weight: 300; }
 .fw-bold     { font-weight: 700  !important; }
 .fw-normal   { font-weight: 400  !important; }
@@ -184,14 +191,20 @@ body {
 
 small, .small { font-size: 0.875em; }
 
-/* =========================================
-   COLOR & BACKGROUND UTILITIES
-   ========================================= */
+.fbd-hero-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #4D7B29;
+    text-align: unset; /* Override any inherited text-center */
+    margin-top: unset;
+    margin-bottom: 10px;
+}
 
-.bg-light       { background-color: var(--fb-color-light)     !important; }
-.bg-secondary   { background-color: var(--fb-color-secondary) !important; }
-.bg-transparent { background-color: transparent               !important; }
-.text-primary   { color: var(--fb-color-primary)              !important; }
+p.fbd-hero-subtitle {
+    font-size: 24px; /* TODO: Convert this to REM*/
+    font-weight: 300;
+    margin: 0;
+}
+
 
 /* =========================================
    CARD COMPONENT
@@ -243,7 +256,6 @@ small, .small { font-size: 0.875em; }
 
 .btn {
     display: inline-block;
-    font-weight: 400;
     line-height: 1.5;
     text-align: center;
     white-space: nowrap;
@@ -251,15 +263,20 @@ small, .small { font-size: 0.875em; }
     cursor: pointer;
     user-select: none;
     background-color: transparent;
-    border: 1px solid transparent;
+    border: var(--fb-border);
     padding: 0.375rem 0.75rem;
-    font-size: 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    color: #5C643A; /* Moss Green */
+    font-weight: 600;
     border-radius: var(--fb-border-radius);
     text-decoration: none;
     transition: color 0.15s ease-in-out,
                 background-color 0.15s ease-in-out,
                 border-color 0.15s ease-in-out,
                 box-shadow 0.15s ease-in-out;
+    color: var(--fb-color-moss-green);
+    text-transform: uppercase;
 }
 
 .btn:focus-visible {
@@ -268,15 +285,12 @@ small, .small { font-size: 0.875em; }
 }
 
 .btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    border-radius: 0.25rem;
+    background-color: none;
 }
 
 /* Primary */
 .btn-primary {
     color: #fff;
-    background-color: var(--fb-color-primary);
     border-color: var(--fb-color-primary);
 }
 .btn-primary:hover {
@@ -339,7 +353,7 @@ small, .small { font-size: 0.875em; }
     line-height: 1.5;
     color: var(--fb-color-text);
     background-color: #fff;
-    border: 1px solid #ced4da;
+    border: var(--fb-border);
     border-radius: var(--fb-border-radius);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -506,4 +520,145 @@ small, .small { font-size: 0.875em; }
     clip: rect(0, 0, 0, 0) !important;
     white-space: nowrap !important;
     border: 0          !important;
+}
+.filters,
+.hero {
+    margin-bottom: 6rem;
+}
+
+/* =========================================
+   DEMO RIBBON  (page-filter-demo.php)
+   ========================================= */
+
+#demo-ribbon {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+        -45deg,
+        #f59e0b,
+        #f59e0b 10px,
+        #fbbf24 10px,
+        #fbbf24 20px
+    );
+    border-bottom: 3px solid #d97706;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.demo-ribbon-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.5rem 2.5rem;
+    max-width: 100%;
+    position: relative;
+}
+
+.demo-ribbon-badge {
+    display: inline-block;
+    background: #1e1e1e;
+    color: #f59e0b;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.demo-ribbon-message {
+    color: #1e1e1e;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.demo-ribbon-message strong { font-weight: 700; }
+
+.demo-ribbon-close {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.demo-ribbon-close:hover { background: rgba(0, 0, 0, 0.3); }
+
+/* =========================================
+   FILTER DEMO — HERO  (page-filter-demo.php)
+   ========================================= */
+
+.fbd-hero {
+    background-color: #f2efe9;
+    padding: 60px 20px 50px;
+}
+
+/* .fbd-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+} */
+
+
+.fbd-cta-button {
+    box-shadow: unset;
+    display: inline-block;
+    background: #b5b800;
+    color: #1f2f36;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 14px 28px;
+    border-radius: 2px;
+    border: unset;
+    white-space: nowrap;
+    transition: background 0.2s;
+    text-transform: uppercase;
+}
+
+.fbd-cta-button:hover {
+    background: #9da000;
+    color: #fff;
+    box-shadow: unset;
+}
+
+/* =========================================
+   FILTER DEMO — CATALOG WRAPPER  (page-filter-demo.php)
+   ========================================= */
+
+.fbd-catalog-wrap {
+    background-color: #f2efe9;
+    padding: 0 20px 60px;
+}
+
+/* Let the React wrapper inherit the beige background */
+.fbd-catalog-wrap .fpc-ingredient-grid-wrapper {
+    background: transparent;
+}
+
+/* Page background */
+.page-template-page-filter-demo #page {
+    background-color: #f2efe9;
 }

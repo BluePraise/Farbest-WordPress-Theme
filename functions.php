@@ -101,6 +101,7 @@ add_action( 'widgets_init', 'farbest_widgets_init' );
  */
 function farbest_scripts() {
 	wp_enqueue_style( 'farbest-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'farbest-demo', get_template_directory_uri() . '/css/farbest.css', array( 'farbest-style' ), '1.0.0' );
 
 	wp_enqueue_script( 'farbest-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
@@ -108,6 +109,44 @@ function farbest_scripts() {
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+
+	// Enqueue plugin assets for the Filter Demo page template
+	if ( is_page_template( 'page-filter-demo.php' ) && defined( 'FPC_VERSION' ) ) {
+		$build_css  = WP_PLUGIN_DIR . '/farbest-product-catalog/assets/build/index.css';
+		$build_js   = WP_PLUGIN_DIR . '/farbest-product-catalog/assets/build/index.js';
+		$asset_file = WP_PLUGIN_DIR . '/farbest-product-catalog/assets/build/index.asset.php';
+
+		if ( file_exists( $build_css ) ) {
+			wp_enqueue_style(
+				'farbest-catalog-styles',
+				plugins_url( 'farbest-product-catalog/assets/build/index.css' ),
+				array(),
+				FPC_VERSION
+			);
+		}
+
+		if ( file_exists( $build_js ) && file_exists( $asset_file ) ) {
+			$asset_data = include $asset_file;
+			wp_enqueue_script(
+				'farbest-catalog-app',
+				plugins_url( 'farbest-product-catalog/assets/build/index.js' ),
+				$asset_data['dependencies'],
+				$asset_data['version'],
+				true
+			);
+			wp_localize_script(
+				'farbest-catalog-app',
+				'fpcData',
+				array(
+					'restUrl'        => rest_url( 'farbest/v1/' ),
+					'nonce'          => wp_create_nonce( 'wp_rest' ),
+					'currentProduct' => null,
+					'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
+					'pluginUrl'      => plugins_url( 'farbest-product-catalog/' ),
+				)
+			);
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'farbest_scripts' );
