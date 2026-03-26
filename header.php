@@ -34,6 +34,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+	<?php wp_body_open(); ?>
 	<div id="page" class="hfeed site">
 
 		<header <?php if (is_front_page()) {
@@ -54,6 +55,8 @@
 				</div>
 			</div>
 		</header>
+
+		<?php do_action('farbest_after_header'); ?>
 
 		<div id="content" class="site-content <?php if (is_front_page()) {
 													echo 'hero';

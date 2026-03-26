@@ -110,44 +110,6 @@ function farbest_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
-	// Enqueue plugin assets for the Filter Demo page template
-	if ( is_page_template( 'page-filter-demo.php' ) && defined( 'FPC_VERSION' ) ) {
-		$build_css  = WP_PLUGIN_DIR . '/farbest-product-catalog/assets/build/index.css';
-		$build_js   = WP_PLUGIN_DIR . '/farbest-product-catalog/assets/build/index.js';
-		$asset_file = WP_PLUGIN_DIR . '/farbest-product-catalog/assets/build/index.asset.php';
-
-		if ( file_exists( $build_css ) ) {
-			wp_enqueue_style(
-				'farbest-catalog-styles',
-				plugins_url( 'farbest-product-catalog/assets/build/index.css' ),
-				array(),
-				FPC_VERSION
-			);
-		}
-
-		if ( file_exists( $build_js ) && file_exists( $asset_file ) ) {
-			$asset_data = include $asset_file;
-			wp_enqueue_script(
-				'farbest-catalog-app',
-				plugins_url( 'farbest-product-catalog/assets/build/index.js' ),
-				$asset_data['dependencies'],
-				$asset_data['version'],
-				true
-			);
-			wp_localize_script(
-				'farbest-catalog-app',
-				'fpcData',
-				array(
-					'restUrl'        => rest_url( 'farbest/v1/' ),
-					'nonce'          => wp_create_nonce( 'wp_rest' ),
-					'currentProduct' => null,
-					'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
-					'pluginUrl'      => plugins_url( 'farbest-product-catalog/' ),
-				)
-			);
-		}
-	}
 }
 add_action( 'wp_enqueue_scripts', 'farbest_scripts' );
 
@@ -1438,81 +1400,19 @@ function posts_in_category($query){
     }
 }
 /**
- * AJAX handler for Filter Demo - Get Ingredients
+ * Deprecated AJAX handler for the retired filter demo endpoint.
  */
-function ajax_get_ingredients_filter_demo() {
-    // Verify nonce for security (optional - allows both logged in and logged out users)
-    if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'filter_demo_nonce')) {
-        wp_send_json_error('Invalid security token');
-        return;
-    }
-
-    $args = array(
-        'post_type' => 'products',
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
-        'orderby' => 'title',
-        'order' => 'ASC'
+function farbest_deprecated_filter_demo_ajax() {
+    wp_send_json_error(
+        array(
+            'message' => 'This endpoint is deprecated. Use /wp-json/farbest/v1/ingredients instead.',
+            'deprecated_since' => '1.1.0',
+        ),
+        410
     );
-
-    $query = new WP_Query($args);
-    $ingredients = array();
-
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-
-            // Get categories from meta field
-            $categories = array();
-            $meta_categories = get_post_meta(get_the_ID(), 'products_categories', true);
-
-            if (is_array($meta_categories)) {
-                $categories = $meta_categories;
-            }
-
-            // Get description
-            $description = get_post_meta(get_the_ID(), 'products_description', true);
-
-            // Get thumbnail
-            $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-
-            // Get claims
-            $claims = get_the_terms(get_the_ID(), 'claim');
-            $claim_names = array();
-            if ($claims && !is_wp_error($claims)) {
-                foreach ($claims as $claim) {
-                    $claim_names[] = $claim->name;
-                }
-            }
-
-            // Get certifications
-            $certifications = get_the_terms(get_the_ID(), 'certification');
-            $cert_names = array();
-            if ($certifications && !is_wp_error($certifications)) {
-                foreach ($certifications as $cert) {
-                    $cert_names[] = $cert->name;
-                }
-            }
-
-            $ingredients[] = array(
-                'id' => get_the_ID(),
-                'title' => get_the_title(),
-                'description' => $description,
-                'excerpt' => $description ? wp_trim_words($description, 20) : '',
-                'link' => get_permalink(),
-                'thumbnail' => $thumbnail ? $thumbnail : '',
-                'categories' => $categories,
-                'claims' => $claim_names,
-                'certifications' => $cert_names,
-                'date' => get_the_date('c')
-            );
-        }
-        wp_reset_postdata();
-    }
-    wp_send_json_success($ingredients);
 }
-add_action('wp_ajax_get_ingredients_filter_demo', 'ajax_get_ingredients_filter_demo');
-add_action('wp_ajax_nopriv_get_ingredients_filter_demo', 'ajax_get_ingredients_filter_demo');
+add_action( 'wp_ajax_get_ingredients_filter_demo', 'farbest_deprecated_filter_demo_ajax' );
+add_action( 'wp_ajax_nopriv_get_ingredients_filter_demo', 'farbest_deprecated_filter_demo_ajax' );
 
 /**
  * Get ingredient categories list
