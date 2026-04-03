@@ -103,6 +103,15 @@ function farbest_scripts() {
 	wp_enqueue_style( 'farbest-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'farbest-demo', get_template_directory_uri() . '/css/farbest.css', array( 'farbest-style' ), '1.0.0' );
 
+	if ( is_singular( 'fpc_ingredient' ) ) {
+		wp_enqueue_style(
+			'farbest-ingredient-single',
+			get_template_directory_uri() . '/css/ingredient-single.css',
+			array( 'farbest-demo' ),
+			'1.0.0'
+		);
+	}
+
 	wp_enqueue_script( 'farbest-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'farbest-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
