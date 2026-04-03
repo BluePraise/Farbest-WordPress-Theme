@@ -51,6 +51,24 @@ while ( have_posts() ) :
 
                     <div class="ingredient-container">
 
+                        <!-- Breadcrumb -->
+                        <?php
+                        $breadcrumb_categories = wp_get_post_terms( $ingredient_id, 'fpc_category' );
+                        $breadcrumb_category   = ( ! is_wp_error( $breadcrumb_categories ) && ! empty( $breadcrumb_categories ) ) ? $breadcrumb_categories[0] : null;
+                        $ingredients_url       = get_post_type_archive_link( 'fpc_ingredient' );
+                        ?>
+                        <nav class="ingredient-breadcrumb" aria-label="<?php esc_attr_e( 'Breadcrumb', 'farbest-catalog' ); ?>">
+                            <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'farbest-catalog' ); ?></a>
+                            <span class="ingredient-breadcrumb__sep" aria-hidden="true"> | </span>
+                            <a href="<?php echo esc_url( $ingredients_url ); ?>"><?php esc_html_e( 'Ingredients', 'farbest-catalog' ); ?></a>
+                            <?php if ( $breadcrumb_category ) : ?>
+                                <span class="ingredient-breadcrumb__sep" aria-hidden="true"> | </span>
+                                <a href="<?php echo esc_url( get_term_link( $breadcrumb_category ) ); ?>"><?php echo esc_html( $breadcrumb_category->name ); ?></a>
+                            <?php endif; ?>
+                            <span class="ingredient-breadcrumb__sep" aria-hidden="true"> | </span>
+                            <span class="ingredient-breadcrumb__current" aria-current="page"><?php the_title(); ?></span>
+                        </nav>
+
                         <!-- Ingredient Header -->
                         <header class="ingredient-header">
                             <h1 class="ingredient-title"><?php the_title(); ?></h1>

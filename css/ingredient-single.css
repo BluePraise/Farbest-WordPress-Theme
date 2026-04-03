@@ -45,6 +45,31 @@
     max-width: 860px;
 }
 
+/* ── Breadcrumb ───────────────────────────────────────────────────────────── */
+
+.ingredient-breadcrumb {
+    font-size: 0.875rem;
+    color: #383838;
+    margin-bottom: 24px;
+}
+
+.ingredient-breadcrumb a {
+    color: #383838;
+    text-decoration: none;
+}
+
+.ingredient-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.ingredient-breadcrumb__sep {
+    color: #383838;
+}
+
+.ingredient-breadcrumb__current {
+    color: #383838;
+}
+
 /* ── Header ───────────────────────────────────────────────────────────────── */
 
 .farbest-ingredient-single .ingredient-header {
