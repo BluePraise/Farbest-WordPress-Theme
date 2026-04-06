@@ -21,6 +21,10 @@ body {
     color: #383836;
 }
 
+a:visited {
+    color: unset;
+}
+
 /* =========================================
    CUSTOM PROPERTIES
    ========================================= */
@@ -203,6 +207,29 @@ p.fbd-hero-subtitle {
     font-size: 24px; /* TODO: Convert this to REM*/
     font-weight: 300;
     margin: 0;
+}
+.tax-fpc_category #content::after,
+.post-type-archive-fpc_ingredient #content::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 500px;
+    background: url(../images/hills_and_valley.svg) no-repeat bottom left;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.fpc-archive-page {
+    position: relative;
+}
+
+/* TODO: Integrate with new theme styling */
+footer {
+    position: relative;
+    z-index: 14;
 }
 
 
@@ -644,28 +671,10 @@ p.fbd-hero-subtitle {
 }
 
 /* background svg at bottom of archive fpc ingredient page */
-/* /images/hills_and_valley.svg */
-.fpc-archive-page {
-    position: relative;
-    overflow: hidden;
-}
-
-.fpc-archive-page:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: url(../images/hills_and_valley.svg) no-repeat bottom center;
-    background-size: contain;
-    height: 100vh;
-    width: 100vw;
-    z-index: 2;
-    pointer-events: none;
-}
 
 .fbd-catalog-wrap {
-    position: relative;
+
     min-height: 80vh;
-    z-index: 10; /* Ensure content appears above the background SVG */
+
 }
 
