@@ -48,7 +48,7 @@ a:visited {
     --fb-color-moss-green: #5C643A;
 
     /* Border radius */
-    --fb-border-radius: 0.375rem;
+    --fb-border-radius: 5px;
 
     --fb-border: 1px solid #383836;/*warm grey*/
 
@@ -79,8 +79,8 @@ a:visited {
 @media (min-width: 576px)  { .container { max-width: 540px;  } }
 @media (min-width: 768px)  { .container { max-width: 720px;  } }
 @media (min-width: 992px)  { .container { max-width: 960px;  } }
-@media (min-width: 1200px) { .container { max-width: 1140px; } }
-@media (min-width: 1400px) { .container { max-width: 1320px; } }
+@media (min-width: 1200px) { .container { max-width: 1200px; } }
+@media (min-width: 1400px) { .container { max-width: 1200px; } }
 
 /* =========================================
    LAYOUT — GRID
@@ -633,7 +633,7 @@ footer {
    ========================================= */
 
 .fbd-hero {
-    background-color: #f2efe9;
+    background-color: #F5F3EF;
     padding: 60px 20px 50px;
 }
 
@@ -647,7 +647,7 @@ footer {
     font-weight: 700;
     letter-spacing: 0.05em;
     padding: 14px 28px;
-    border-radius: 2px;
+    border-radius: 5px;
     border: unset;
     white-space: nowrap;
     transition: background 0.2s;
@@ -675,6 +675,7 @@ footer {
 .fbd-catalog-wrap {
 
     min-height: 80vh;
-
+    z-index: 1;
+    position: relative;
 }
 

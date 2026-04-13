@@ -10,16 +10,8 @@
 
 /* ── Page layout ──────────────────────────────────────────────────────────── */
 
-.fis-content-area {
-    float: left;
-    width: 65%;
-    margin-right: 5%;
-}
-
 .fis-sidebar {
-    float: right;
-    width: 280px;
-    margin-top: 40px;
+    display: none;
 }
 
 .fis-clear {
@@ -42,7 +34,8 @@
 }
 
 .farbest-ingredient-single .ingredient-container {
-    max-width: 860px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* ── Breadcrumb ───────────────────────────────────────────────────────────── */
@@ -90,9 +83,9 @@
 .farbest-ingredient-single .ingredient-category {
     display: inline-block;
     padding: 3px 10px;
-    background: #f2efe9;
+    background: #F5F3EF;
     border: 1px solid #ddd7cb;
-    border-radius: 12px;
+    border-radius: 5px;
     font-size: 0.75rem;
     font-weight: 600;
     color: #003e52;
@@ -108,7 +101,7 @@
     gap: 24px;
     margin-bottom: 28px;
     padding: 20px 0;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .farbest-ingredient-single .ingredient-benefits__column {
@@ -128,7 +121,7 @@
     margin: 0;
     padding-left: 18px;
     font-size: 0.875rem;
-    color: #383838;
+    color: #383836;
     line-height: 1.7;
     font-weight: 400;
 }
@@ -180,7 +173,7 @@
 .farbest-ingredient-single .ingredient-image img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 5px;
     display: block;
 }
 
@@ -254,7 +247,7 @@
 .single-fpc_ingredient #content {
     position: relative;
     z-index: 10;
-    background-color: #f2efe9;
+    background-color: #F5F3EF;
 }
 
 .single-fpc_ingredient .content-area {
