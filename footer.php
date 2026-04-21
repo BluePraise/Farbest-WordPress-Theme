@@ -8,6 +8,10 @@
  */
 ?>
 
+<div class="footer-top-shape">
+	<?php echo file_get_contents( get_template_directory() . '/images/footer_top_shape.svg' ); ?>
+</div>
+
 <footer>
 <div class="fb_content clearfix">
 

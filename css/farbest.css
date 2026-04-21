@@ -21,10 +21,6 @@ body {
     color: #383836;
 }
 
-a:visited {
-    color: unset;
-}
-
 /* =========================================
    CUSTOM PROPERTIES
    ========================================= */
@@ -227,6 +223,20 @@ p.fbd-hero-subtitle {
 }
 
 /* TODO: Integrate with new theme styling */
+.footer-top-shape {
+    display: block;
+    line-height: 0;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-top-shape svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 footer {
     position: relative;
     z-index: 14;
