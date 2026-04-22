@@ -87,11 +87,11 @@
 **Goal:** Scaffold and build `farbest-blocks/` — a new FSE block theme using `create-block-theme` plugin.
 
 ### Setup tasks
-- [ ] Use **Create Block Theme** plugin → Appearance → Create Block Theme → "Create blank theme" (name: `Farbest Blocks`, slug: `farbest-blocks`)
-- [ ] Activate `farbest-blocks` on local only
+- [x] Scaffold blank block theme (`farbest-block-theme` folder created via Create Block Theme plugin)
+- [x] Copied `templates/`, `parts/`, `theme.json` into main `farbest` repo (tracked in git)
+- [x] Symlinked to Local by Flywheel (`farbest-01` site)
+- [x] `css/tokens.css` already present and enqueued in `functions.php`
 - [ ] Init `package.json` with `@wordpress/scripts` (mirror plugin build pipeline)
-- [ ] Copy `css/tokens.css` into `farbest-blocks/css/tokens.css`
-- [ ] Enqueue `tokens.css` in `farbest-blocks/functions.php`
 
 ### `theme.json` tasks
 - [x] Define full color palette (11 brand colors — mirrors `tokens.css`)
@@ -109,8 +109,8 @@
 - [ ] `templates/archive-fpc_ingredient.html` — ingredient archive (mounts React app)
 
 ### Template parts
-- [ ] `parts/header.html`
-- [ ] `parts/footer.html`
+- [x] `parts/header.html` — logo + primary nav, white bg, mobile overlay menu
+- [x] `parts/footer.html` — navy bg, 3-column (logo/tagline, nav, contact), copyright bar
 
 ### Block patterns
 - [ ] `patterns/hero.php` — Cover + Heading + Paragraph + Button (core blocks)
