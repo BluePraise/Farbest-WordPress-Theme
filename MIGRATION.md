@@ -101,23 +101,23 @@
 - [x] Disable default WordPress color palette
 
 ### Templates
-- [ ] `templates/index.html`
-- [ ] `templates/page.html`
-- [ ] `templates/home.html` — front page
-- [ ] `templates/404.html`
-- [ ] `templates/single-fpc_ingredient.html` — ingredient detail page
-- [ ] `templates/archive-fpc_ingredient.html` — ingredient archive (mounts React app)
+- [x] `templates/index.html` — scaffolded (query loop + pagination)
+- [x] `templates/page.html` — post title + post content, constrained layout
+- [x] `templates/home.html` — hero cover + ingredients intro + partners sections
+- [x] `templates/404.html` — OOPS heading + back to home CTA
+- [x] `templates/single-fpc_ingredient.html` — teal hero band + content/sidebar layout (certifications, claims, applications)
+- [x] `templates/archive-fpc_ingredient.html` — teal header + placeholder for farbest/ingredient-catalog block
 
 ### Template parts
 - [x] `parts/header.html` — logo + primary nav, white bg, mobile overlay menu
 - [x] `parts/footer.html` — navy bg, 3-column (logo/tagline, nav, contact), copyright bar
 
 ### Block patterns
-- [ ] `patterns/hero.php` — Cover + Heading + Paragraph + Button (core blocks)
-- [ ] `patterns/cta-section.php` — Group + Button
-- [ ] `patterns/product-grid.php` — Query Loop
-- [ ] `patterns/locations-grid.php` — Query Loop (warehousing)
-- [ ] `patterns/partners-grid.php` — Query Loop
+- [x] `patterns/hero.php` — teal Cover + heading + subtitle + lime CTA button
+- [x] `patterns/cta-section.php` — beige Group + centered heading + lime button
+- [x] `patterns/product-grid.php` — Query Loop, fpc_ingredient, 3-col card grid
+- [x] `patterns/locations-grid.php` — Query Loop, warehousing posts, 3-col grid
+- [x] `patterns/partners-grid.php` — Query Loop, partners CPT, 4-col logo grid
 
 ### Custom block — `farbest/ingredient-catalog` (only custom block)
 - [ ] `src/blocks/ingredient-catalog/block.json`
