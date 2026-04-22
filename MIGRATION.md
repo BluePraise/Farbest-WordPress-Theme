@@ -91,7 +91,7 @@
 - [x] Copied `templates/`, `parts/`, `theme.json` into main `farbest` repo (tracked in git)
 - [x] Symlinked to Local by Flywheel (`farbest-01` site)
 - [x] `css/tokens.css` already present and enqueued in `functions.php`
-- [ ] Init `package.json` with `@wordpress/scripts` (mirror plugin build pipeline)
+- [x] Init `package.json` with `@wordpress/scripts` (mirror plugin build pipeline)
 
 ### `theme.json` tasks
 - [x] Define full color palette (11 brand colors — mirrors `tokens.css`)
