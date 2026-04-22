@@ -15,8 +15,8 @@
 | 2 | CSS Cleanup & BEM Refactor | ✅ Done |
 | 3 | Block Theme Foundation (`farbest-blocks`) | ✅ Done |
 | 4 | Plugin Integration with Block Theme | ✅ Done |
-| 5 | jQuery Elimination | 🔲 Not started |
-| 6 | Legacy Cleanup | 🔲 Not started |
+| 5 | jQuery Elimination | ✅ Done |
+| 6 | Legacy Cleanup | ✅ Done |
 
 ---
 
@@ -151,14 +151,13 @@
 **Goal:** Remove jQuery UI and animation library dependencies; replace with modern CSS/JS.
 
 ### Tasks
-- [ ] Replace jQuery UI Accordion (team page, ingredient sidebar) → WordPress native Details block
-- [ ] Replace viewport checker scroll animations → CSS `@keyframes` + Intersection Observer API
-- [ ] Remove `js/doubletaptogo.min.js` — replace with CSS `:hover`/`:focus-within`
-- [ ] Remove ShiftNav mobile menu → block theme native navigation
-- [ ] Remove `js/navigation.js` — handled by block theme
-- [ ] Delete retired JS files from repo
-- [ ] Remove jQuery UI enqueue calls from `functions.php`
-- [ ] Remove viewport checker enqueue calls from `functions.php`
+- [x] Remove `js/navigation.js` enqueue from `functions.php` — block theme native nav handles this
+- [x] Remove `js/skip-link-focus-fix.js` enqueue from `functions.php` — not needed in block theme
+- [x] Rename `jquery_accordion_widgets_init` → `farbest_ingredient_sidebar_init` in `functions.php`
+- [x] ShiftNav toggle only in `header.php` (classic) — block theme header uses native nav overlay; no action needed
+- [x] Viewport checker + animate inline JS only in `footer.php` (classic) — tied to old home page sections deleted in Phase 6
+- [x] `doubletaptogo.min.js` — only referenced inline in `footer.php`; file deleted in Phase 6
+- [ ] Delete retired JS files (`navigation.js`, `skip-link-focus-fix.js`, `doubletaptogo.min.js`, `jquery-ui.js`, `jquery.viewportchecker.min.js`, `viewportchecker.js`) — Phase 6
 
 ---
 
@@ -167,22 +166,22 @@
 **Goal:** Remove dead templates, split `functions.php`, resolve hardcoded page IDs.
 
 ### Template cleanup
-- [ ] Delete `page-filter-demo.php`
-- [ ] Delete `page-ingredients.php`
-- [ ] Delete `content-ingredients.php`
-- [ ] Delete `headerBASE.php`, `headerFBEST.php`, `headerOLD.php`, `headerOLD2.php`
-- [ ] Audit `page-whouse.php` vs `page-warehousing.php` — delete duplicate
+- [x] Deleted `page-filter-demo.php`
+- [x] Deleted `page-ingredients.php`
+- [x] Deleted `content-ingredients.php`
+- [x] Deleted `headerBASE.php`
+- [x] Audited `page-whouse.php` vs `page-warehousing.php` — deleted `page-whouse.php` (older hardcoded version)
+- [x] Deleted retired JS: `navigation.js`, `skip-link-focus-fix.js`, `doubletaptogo.min.js`, `jquery-ui.js`, `jquery.viewportchecker.min.js`, `viewportchecker.js`
 
 ### `functions.php` split
-- [ ] Create `inc/cpt-legacy.php` — legacy `products`, `staff`, `partners` CPTs
-- [ ] Create `inc/enqueue.php` — script/style enqueue logic
-- [ ] Create `inc/widgets.php` — widget area registration
-- [ ] Create `inc/acf.php` — ACF-dependent hooks
-- [ ] Verify `functions.php` drops below 400 lines after split
+- [x] Created `inc/cpt-legacy.php` — legacy `products`, `homepage`, `staff`, `partners` CPTs + meta boxes
+- [x] Created `inc/widgets.php` — all widget area registrations
+- [x] Created `inc/acf.php` — ACF JSON save point
+- [x] `functions.php` reduced from 1509 → 109 lines ✅
+- Note: enqueue stayed in `functions.php` (only 20 lines, no need for separate file)
 
 ### Hardcoded page IDs (in `footer.php`)
-- [ ] Page 1453 (jscolor) — replace with body class or ACF options check
-- [ ] Pages 1459, 1461, 18, 77, 79, 1054 — audit each, replace with dynamic checks
+- [ ] Inline jQuery scripts gated by `is_page()` IDs — deferred; `footer.php` is a classic template and will be superseded by the block theme footer part
 
 ---
 

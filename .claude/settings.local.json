@@ -4,7 +4,10 @@
       "Bash(npm run *)",
       "Bash(npm install *)",
       "Bash(sudo chown *)",
-      "Bash(xargs -I{} basename {})"
+      "Bash(xargs -I{} basename {})",
+      "Bash(sed -n '25,60p' /Users/mcmc/Projects/Farbest/03_project/theme/farbest/footer.php)",
+      "Bash(sed -n '75,160p' /Users/mcmc/Projects/Farbest/03_project/theme/farbest/footer.php)",
+      "Bash(git rm *)"
     ]
   }
 }
