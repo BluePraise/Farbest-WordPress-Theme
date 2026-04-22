@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "farbest/ingredient-catalog",
+	"version": "1.0.0",
+	"title": "Ingredient Catalog",
+	"category": "theme",
+	"icon": "grid-view",
+	"description": "Mounts the Farbest ingredient filter and catalog React app.",
+	"keywords": ["ingredients", "catalog", "filter", "farbest"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"textdomain": "farbest",
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js"
+}

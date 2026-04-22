@@ -124,6 +124,14 @@ function farbest_scripts() {
 add_action( 'wp_enqueue_scripts', 'farbest_scripts' );
 
 /**
+ * Register custom blocks.
+ */
+function farbest_register_blocks() {
+	register_block_type( get_template_directory() . '/build/blocks/ingredient-catalog' );
+}
+add_action( 'init', 'farbest_register_blocks' );
+
+/**
  * Implement the Custom Header feature.
  */
 //require get_template_directory() . '/inc/custom-header.php';

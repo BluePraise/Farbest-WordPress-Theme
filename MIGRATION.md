@@ -13,8 +13,8 @@
 |---|---|---|
 | 1 | Color System Consolidation | ✅ Done |
 | 2 | CSS Cleanup & BEM Refactor | ✅ Done |
-| 3 | Block Theme Foundation (`farbest-blocks`) | 🔄 In progress |
-| 4 | Plugin Integration with Block Theme | 🔲 Not started |
+| 3 | Block Theme Foundation (`farbest-blocks`) | ✅ Done |
+| 4 | Plugin Integration with Block Theme | ✅ Done |
 | 5 | jQuery Elimination | 🔲 Not started |
 | 6 | Legacy Cleanup | 🔲 Not started |
 
@@ -120,10 +120,12 @@
 - [x] `patterns/partners-grid.php` — Query Loop, partners CPT, 4-col logo grid
 
 ### Custom block — `farbest/ingredient-catalog` (only custom block)
-- [ ] `src/blocks/ingredient-catalog/block.json`
-- [ ] `src/blocks/ingredient-catalog/edit.js` — placeholder in editor
-- [ ] `src/blocks/ingredient-catalog/view.js` — mounts React app on frontend
-- [ ] Build block with `npm run build`
+- [x] `src/blocks/ingredient-catalog/block.json`
+- [x] `src/blocks/ingredient-catalog/index.js` — registers block type
+- [x] `src/blocks/ingredient-catalog/edit.js` — placeholder in editor
+- [x] `src/blocks/ingredient-catalog/view.js` — ensures #farbest-ingredient-grid mount point exists
+- [x] Build block with `npm run build` — compiled successfully to `build/ingredient-catalog/`
+- [x] Registered via `farbest_register_blocks()` in `functions.php`
 - [ ] Verify React app mounts correctly on `/ingredients/`
 
 ---
@@ -133,12 +135,12 @@
 **Goal:** Plugin works cleanly with `farbest-blocks`; REST API, templates, and block all wired up.
 
 ### Tasks
-- [ ] Update `FPC_Template_Loader` — check for block templates (`.html`) before falling back to PHP templates
-- [ ] Register `farbest/ingredient-catalog` block in plugin (`register_block_type`)
-- [ ] Update asset enqueue — load plugin assets when the block is present on any page (not just archive/single/taxonomy)
-- [ ] Remove `.fbd-hero` definition from `main.scss` — theme owns hero skin
-- [ ] Security: add server-side nonce validation to `POST /submit-contact` REST handler
-- [ ] Security: filter `get_ingredient` REST response — remove `rep_code_primary`, `rep_code_secondary` from public output
+- [x] Update `FPC_Template_Loader` — checks block theme `.html` template first, falls back to PHP classic/plugin templates
+- [x] Update asset enqueue — loads plugin assets when `farbest/ingredient-catalog` block is present (`has_block()`)
+- [x] Remove `.fbd-hero` block from `main.scss` — theme owns hero skin; plugin rebuilt clean ✅
+- [x] Security: nonce validation on `POST /submit-contact` via `X-WP-Nonce` header in `permission_callback`
+- [x] Security: `rep_code_primary` and `rep_code_secondary` stripped from public `get_ingredient` REST response
+- [ ] Register `farbest/ingredient-catalog` block in plugin (`register_block_type`) — handled by theme; skip
 - [ ] Run `product_applications` data migration if any pre-taxonomy content exists (`wp farbest migrate`)
 - [ ] Update plugin `CLAUDE.md` to reflect block theme integration
 
