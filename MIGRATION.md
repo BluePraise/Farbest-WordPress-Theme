@@ -13,7 +13,7 @@
 |---|---|---|
 | 1 | Color System Consolidation | ✅ Done |
 | 2 | CSS Cleanup & BEM Refactor | ✅ Done |
-| 3 | Block Theme Foundation (`farbest-blocks`) | 🔲 Not started |
+| 3 | Block Theme Foundation (`farbest-blocks`) | 🔄 In progress |
 | 4 | Plugin Integration with Block Theme | 🔲 Not started |
 | 5 | jQuery Elimination | 🔲 Not started |
 | 6 | Legacy Cleanup | 🔲 Not started |
@@ -94,11 +94,11 @@
 - [ ] Enqueue `tokens.css` in `farbest-blocks/functions.php`
 
 ### `theme.json` tasks
-- [ ] Define full color palette (8 brand colors — mirrors `tokens.css`)
-- [ ] Define typography scale
-- [ ] Define spacing scale
-- [ ] Define button styles (replaces `.fbd-cta-button`)
-- [ ] Disable default WordPress color palette
+- [x] Define full color palette (11 brand colors — mirrors `tokens.css`)
+- [x] Define typography scale (fluid, 6 steps)
+- [x] Define spacing scale (fluid, 7 steps)
+- [x] Define button styles (lime bg, navy text, hover state)
+- [x] Disable default WordPress color palette
 
 ### Templates
 - [ ] `templates/index.html`
