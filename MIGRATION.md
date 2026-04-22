@@ -12,7 +12,7 @@
 | Phase | Description | Status |
 |---|---|---|
 | 1 | Color System Consolidation | ✅ Done |
-| 2 | CSS Cleanup & BEM Refactor | 🔲 Not started |
+| 2 | CSS Cleanup & BEM Refactor | ✅ Done |
 | 3 | Block Theme Foundation (`farbest-blocks`) | 🔲 Not started |
 | 4 | Plugin Integration with Block Theme | 🔲 Not started |
 | 5 | jQuery Elimination | 🔲 Not started |
@@ -51,22 +51,34 @@
 
 ---
 
-## Phase 2 — CSS Cleanup & BEM Refactor 🔲
+## Phase 2 — CSS Cleanup & BEM Refactor ✅
 
 **Goal:** Remove dead CSS files, fix BEM classnames, reduce file count.
 
-### Tasks
+### Completed tasks
 
-- [ ] Delete `css/jquery-ui.css`
-- [ ] Delete `css/jquery-ui.structure.css`
-- [ ] Delete `layouts/content-sidebar.css`
-- [ ] Delete `layouts/sidebar-content.css`
-- [ ] Delete `css/animate.css` — replace any usage with CSS transitions
-- [ ] Remove `#demo-ribbon` styles from `farbest.css` (only used by deprecated `page-filter-demo.php`)
-- [ ] BEM audit: `ingredient-cert-logos` → `ingredient-certifications__logo`
-- [ ] BEM audit: `ingredient-cert-logo` → `ingredient-certifications__logo-item`
-- [ ] BEM audit: review all `.fis-*` classes in `ingredient-single.css` — will they survive in block theme?
-- [ ] Remove `farbest-demo` enqueue dependency on deleted jQuery UI files from `functions.php`
+- [x] Deleted `css/jquery-ui.css`
+- [x] Deleted `css/jquery-ui.structure.css`
+- [x] Deleted `layouts/content-sidebar.css`
+- [x] Deleted `layouts/sidebar-content.css`
+- [x] Deleted `css/animate.css`
+- [x] Removed hardcoded `<link>` and `<script>` tags for deleted files from `header.php`
+- [x] Removed `#demo-ribbon` / `.demo-ribbon-*` styles from `farbest.css` (deprecated `page-filter-demo.php` only)
+- [x] BEM rename: `ingredient-cert-logos` → `ingredient-certifications__list`
+- [x] BEM rename: `ingredient-cert-logo` → `ingredient-certifications__logo`
+- [x] Updated `farbest-catalog/single-ingredient.php` (theme override) with new BEM classes
+- [x] Updated `plugin/templates/single-ingredient.php` with new BEM classes
+- [x] Updated `main.scss` with new BEM class names + fixed stale combined selector
+- [x] Built plugin — `npm run build` clean ✅
+
+### Files changed
+- `header.php`
+- `css/farbest.css`
+- `farbest-catalog/single-ingredient.php`
+- `../plugins/farbest-product-catalog/templates/single-ingredient.php`
+- `../plugins/farbest-product-catalog/assets/src/styles/main.scss`
+- `../plugins/farbest-product-catalog/assets/build/index.css` ← compiled
+- **Deleted:** `css/jquery-ui.css`, `css/jquery-ui.structure.css`, `css/animate.css`, `layouts/content-sidebar.css`, `layouts/sidebar-content.css`
 
 ---
 

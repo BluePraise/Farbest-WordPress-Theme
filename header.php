@@ -18,16 +18,9 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 	<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/animate.css">
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jquery-ui.css">
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jquery-ui.structure.css">
 	<link rel="icon" href="https://farbest.com/favicon.ico" type="image/x-icon" />
 	<link rel="shortcut icon" href="https://farbest.com/favicon.ico" type="image/x-icon" />
 	<?php wp_head(); ?>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.viewportchecker.min.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/modernizr.custom.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/doubletaptogo.min.js"></script>
 	<?php if (is_page(1453)) { ?>
 		<script src="<?php echo get_template_directory_uri(); ?>/js/jscolor.js"></script>
 	<?php } ?>
