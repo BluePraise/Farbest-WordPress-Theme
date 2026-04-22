@@ -1,8 +1,12 @@
 /*
  * farbest.css
  * Farbest — Demo Page Styles
- * Version: 1.0.0
- * Date: 2026-03-23
+ * Version: 1.1.0
+ * Date: 2026-04-22
+ * =========================================
+ *
+ * Depends on tokens.css being loaded first.
+ * Colors use --farbest-* and --color-* custom properties from tokens.css.
  * =========================================
  */
 
@@ -18,7 +22,7 @@
 
 body {
     margin: 0;
-    color: #383836;
+    color: var(--color-text);
 }
 
 /* =========================================
@@ -33,20 +37,20 @@ body {
     --fb-spacer-4: 1.5rem;
     --fb-spacer-5: 3rem;
 
-    /* Colors */
-    --fb-color-primary:   #0d6efd;
-    --fb-color-secondary: #6c757d;
-    --fb-color-danger:    #dc3545;
-    --fb-color-light:     #f8f9fa;
-    --fb-color-muted:     #6c757d;
-    --fb-color-border:    rgba(0, 0, 0, 0.15);
-    --fb-color-text:      #212529;
-    --fb-color-moss-green: #5C643A;
+    /* Colors — alias tokens for local shorthand */
+    --fb-color-primary:    var(--color-primary);
+    --fb-color-secondary:  #6c757d;
+    --fb-color-danger:     #dc3545;
+    --fb-color-light:      #f8f9fa;
+    --fb-color-muted:      #6c757d;
+    --fb-color-border:     rgba(0, 0, 0, 0.15);
+    --fb-color-text:       var(--color-text);
+    --fb-color-moss-green: var(--farbest-moss-green);
 
     /* Border radius */
     --fb-border-radius: 5px;
 
-    --fb-border: 1px solid #383836;/*warm grey*/
+    --fb-border: 1px solid var(--farbest-warm-grey); /* warm grey */
 
     /* Grid gutters (overridden by .g-* classes) */
     --fb-gutter-x: 1.5rem;
@@ -57,7 +61,7 @@ body {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #5C643A; /* Moss Green */
+    color: var(--color-label);
 }
 
 /* =========================================
@@ -180,7 +184,7 @@ body {
    TYPOGRAPHY UTILITIES
    ========================================= */
 
-h1, h2, h3, h4, h5, h6 { color: #4D7B29; }
+h1, h2, h3, h4, h5, h6 { color: var(--color-heading); }
 
 .lead        { font-size: 1.25rem; font-weight: 300; }
 .fw-bold     { font-weight: 700  !important; }
@@ -193,14 +197,14 @@ small, .small { font-size: 0.875em; }
 
 .fbd-hero-title {
     font-size: clamp(2rem, 4vw, 3rem);
-    color: #4D7B29;
+    color: var(--color-heading);
     text-align: unset; /* Override any inherited text-center */
     margin-top: unset;
     margin-bottom: 10px;
 }
 
 p.fbd-hero-subtitle {
-    font-size: 24px; /* TODO: Convert this to REM*/
+    font-size: 1.5rem;
     font-weight: 300;
     margin: 0;
 }
@@ -304,7 +308,6 @@ footer {
     padding: 0.375rem 0.75rem;
     border-radius: 0.25rem;
     font-size: 0.875rem;
-    color: #5C643A; /* Moss Green */
     font-weight: 600;
     border-radius: var(--fb-border-radius);
     text-decoration: none;
@@ -643,15 +646,15 @@ footer {
    ========================================= */
 
 .fbd-hero {
-    background-color: #F5F3EF;
+    background-color: var(--color-bg);
     padding: 60px 20px 50px;
 }
 
 .fbd-cta-button {
     box-shadow: unset;
     display: inline-block;
-    background: #b5b800;
-    color: #1f2f36;
+    background: var(--color-cta);
+    color: var(--color-cta-text);
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 700;
@@ -665,16 +668,16 @@ footer {
 }
 
 .fbd-cta-button:hover {
-    background: #9da000;
-    color: #fff;
+    background: var(--color-cta-hover);
+    color: var(--farbest-white);
     box-shadow: unset;
 }
 
 .fpc-reset-button {
     text-transform: uppercase;
     background: #f5f5f5;
-    color: #5C643A;
-    border: 1px solid #383836;
+    color: var(--color-label);
+    border: 1px solid var(--farbest-warm-grey);
     box-shadow: none;
     font-size: 12px;
     font-weight: 700;

@@ -6,6 +6,8 @@
  *
  * Plugin styles (tabs, grid cards, filter UI) are untouched and still
  * loaded from assets/build/index.css.
+ *
+ * Depends on tokens.css being loaded first.
  */
 
 /* ── Page layout ──────────────────────────────────────────────────────────── */
@@ -42,12 +44,12 @@
 
 .ingredient-breadcrumb {
     font-size: 0.875rem;
-    color: #383838;
+    color: var(--farbest-warm-grey);
     /* margin-bottom: 6rem; */
 }
 
 .ingredient-breadcrumb a {
-    color: #383838;
+    color: var(--farbest-warm-grey);
     text-decoration: none;
 }
 
@@ -56,11 +58,11 @@
 }
 
 .ingredient-breadcrumb__sep {
-    color: #383838;
+    color: var(--farbest-warm-grey);
 }
 
 .ingredient-breadcrumb__current {
-    color: #383838;
+    color: var(--farbest-warm-grey);
 }
 
 /* ── Header row (title + benefits left / category SVG + CTA right) ────────── */
@@ -106,7 +108,7 @@
 .farbest-ingredient-single .ingredient-cta-button {
     display: inline-block;
     padding: 10px 24px;
-    background-color: #b5b800;
+    background-color: var(--color-cta);
     color: #fff;
     font-size: 0.9rem;
     font-weight: 700;
@@ -118,7 +120,7 @@
 }
 
 .farbest-ingredient-single .ingredient-cta-button:hover {
-    background-color: #9ea000;
+    background-color: var(--color-cta-hover);
     color: #fff;
 }
 
@@ -162,12 +164,12 @@
 .farbest-ingredient-single .ingredient-category {
     display: inline-block;
     padding: 3px 10px;
-    background: #F5F3EF;
-    border: 1px solid #ddd7cb;
+    background: var(--color-bg);
+    border: 1px solid var(--color-bg-dark);
     border-radius: 5px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #003e52;
+    color: var(--farbest-teal);
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
@@ -191,7 +193,7 @@
     margin: 0 0 8px;
     font-size: 0.8rem;
     font-weight: 700;
-    color: #003e52;
+    color: var(--farbest-teal);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -200,7 +202,7 @@
     margin: 0;
     padding-left: 18px;
     font-size: 0.875rem;
-    color: #383836;
+    color: var(--farbest-warm-grey);
     line-height: 1.7;
     font-weight: 400;
 }
@@ -263,7 +265,7 @@
 .farbest-ingredient-single .ingredient-excerpt {
     font-size: 1rem;
     line-height: 1.7;
-    color: #383838;
+    color: var(--farbest-warm-grey);
     margin-bottom: 20px;
 }
 
@@ -291,7 +293,7 @@
 /* ── Details table ────────────────────────────────────────────────────────── */
 .farbest-ingredient-single .ingredient-description {
     min-height: 400px;
-    color: #5c643a;
+    color: var(--farbest-moss-green);
     font-weight: 600;
 }
 
@@ -311,7 +313,7 @@
 .farbest-ingredient-single .ingredient-details-table th {
     width: 160px;
     font-weight: 700;
-    color: #003e52;
+    color: var(--farbest-teal);
     white-space: nowrap;
 }
 
@@ -320,7 +322,7 @@
 .farbest-ingredient-single .ingredient-related {
     margin-top: 48px;
     padding-top: 32px;
-    border-top: 2px solid #ddd7cb;
+    border-top: 2px solid var(--color-bg-dark);
 }
 
 /* ── Page chrome (body background, layout reset, SVG watermark) ───────────── */
@@ -328,7 +330,7 @@
 .single-fpc_ingredient #content {
     position: relative;
     z-index: 10;
-    background-color: #F5F3EF;
+    background-color: var(--color-bg);
 }
 
 .single-fpc_ingredient .content-area {
