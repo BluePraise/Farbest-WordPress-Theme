@@ -1,0 +1,32 @@
+/*
+Theme Name: Farbest Classic
+Theme URI: https://farbest.com
+Author: BeckerGuerry
+Author URI: https://beckerguerry.com
+Description: Classic PHP theme for Farbest Brands. Works alongside the Farbest Product Catalog plugin, which owns all ingredient templates.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: farbest-classic
+Tags: classic
+*/
+
+/*
+ * Intentionally empty.
+ *
+ * WordPress requires this file for the theme header above, but all styles live
+ * in css/ and are enqueued in order from functions.php:
+ *
+ *   tokens.css   design tokens — every other file consumes these
+ *   base.css     element defaults (typography, links, buttons, layout widths)
+ *   global.css   shared components and page-level decoration
+ *   header.css   sticky header + mobile drawer
+ *   footer.css   wave divider + footer columns
+ *
+ * Conditionally:
+ *   card-grid.css         Card Grid page template
+ *   ingredient-single.css single fpc_ingredient (markup owned by the plugin)
+ */

@@ -1,0 +1,128 @@
+/**
+ * Global Components — Farbest Classic Theme
+ *
+ * Reusable component styles loaded on every page.
+ * Depends on tokens.css being loaded first.
+ *
+ * Ported from the retired block theme (tag archive/fse-final). The layout
+ * primitives these components rely on — which the block editor used to
+ * generate from theme.json — live in base.css.
+ */
+
+/* ── Sticky footer layout ───────────────────────────────────────────────── */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* header.php opens #content.site-content; footer.php closes it. This is the
+   classic-theme stand-in for the block theme's <main> wrapper — the plugin's
+   single-ingredient.php emits no <main> of its own, and the theme's templates
+   nest theirs inside #primary. */
+.site-wrap > .site-content {
+    flex: 1;
+}
+
+
+/* ── Single ingredient ──────────────────────────────────────────────────── */
+/*
+ * Lives on the content wrapper so the hills remain part of the page content
+ * area, but extends slightly below it to fill the transparent top band of the
+ * footer wave SVG.
+ */
+body.single-fpc_ingredient .site-content {
+    position: relative;
+    isolation: isolate;
+    padding-bottom: 300px;
+}
+
+body.single-fpc_ingredient .site-content::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(-2.35vw - 2px);
+    background: url('../images/hills_and_valley.svg') no-repeat bottom left;
+    background-size: cover;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* ── Category, Archive & Hills page ──────────────────────────────────────── */
+
+/* Hills SVG anchors to the footer, rising upward from the footer top edge.
+   Shared by the category/archive layouts and the "Hills & Valley" page
+   template (body class page-template-page-hills, added by WP when the
+   template is assigned to a page). The sticky-footer layout above keeps the
+   footer — and therefore the hills — pinned to the bottom on short pages. */
+body.tax-fpc_category footer.site-footer,
+body.post-type-archive-fpc_ingredient footer.site-footer,
+body.page-template-page-hills footer.site-footer {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+}
+
+body.tax-fpc_category footer.site-footer::before,
+body.post-type-archive-fpc_ingredient footer.site-footer::before,
+body.page-template-page-hills footer.site-footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% - 60px); /* aligns with footer wave top edge */
+    background: url('../images/hills_and_valley.svg') no-repeat bottom center;
+    background-size: 100%;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Reserve space beneath the editable content so the client's last block
+   clears the hills band (SVG aspect ~2500:760 → ~30% of viewport width). */
+body.page-template-page-hills .farbest-hills-page {
+    padding-bottom: clamp(180px, 30vw, 420px);
+}
+
+
+/* ── CTA Button ───────────────────────────────────────────────────────────── */
+
+.fbd-cta-button {
+    box-shadow: unset;
+    display: inline-block;
+    background: var(--color-cta);
+    color: var(--color-cta-text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 5px;
+    border: unset;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.fbd-cta-button:hover,
+.fbd-cta-button:focus {
+    background: var(--color-cta-hover);
+    color: var(--color-cta-text);
+    box-shadow: unset;
+}
+
+.fbd-cta-button:visited {
+    color: var(--color-cta-text);
+}

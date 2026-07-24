@@ -1,0 +1,32 @@
+name: Deploy Theme to Staging
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # No build step: this theme ships plain CSS and vanilla JS by design.
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: >-
+            -avzr --delete
+            --exclude='.git'
+            --exclude='.github'
+            --exclude='.claude'
+            --exclude='.vscode'
+            --exclude='node_modules'
+            --exclude='*.md'
+            --exclude='.gitignore'
+            --exclude='.DS_Store'
+          path: ./
+          remote_path: /home/customer/www/farbest.navesinkwebsolutions.com/public_html/wp-content/themes/farbest-classic/
+          remote_host: ${{ secrets.STAGING_HOST }}
+          remote_user: ${{ secrets.STAGING_USER }}
+          remote_key: ${{ secrets.STAGING_SSH_KEY }}
+          remote_port: 18765

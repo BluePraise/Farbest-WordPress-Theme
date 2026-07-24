@@ -1,0 +1,61 @@
+/*
+ * tokens.css — Farbest design tokens (single source of truth)
+ *
+ * Every other stylesheet in this theme depends on this file, so it is
+ * enqueued first and declared as a dependency of the rest.
+ *
+ * These values are also mirrored by the Farbest Product Catalog plugin in
+ * assets/src/styles/main.scss. Change them in both places, or the plugin's
+ * compiled CSS will drift from the theme.
+ *
+ * Note: the previous theme aliased these to --wp--preset--color--* with hex
+ * fallbacks, because theme.json generated those custom properties. This theme
+ * has no theme.json, so the presets never existed and every lookup fell
+ * through to its fallback. The hex values are declared directly here instead.
+ */
+
+:root {
+    /* ── Brand palette ──────────────────────────────────────────────────── */
+    --farbest-green:         #648c1c; /* PMS 370  — logo green  */
+    --farbest-teal:          #003e52; /* PMS 3035 — logo teal   */
+    --farbest-lime:          #b5b800; /* PMS 390C — CTA lime    */
+    --farbest-lime-dark:     #9da000; /* CTA hover state        */
+    --farbest-heading-green: #4d7b29; /* h1–h6                  */
+    --farbest-moss-green:    #5c643a; /* labels, moss accents   */
+    --farbest-beige:         #f2efe9; /* page background        */
+    --farbest-beige-dark:    #ddd7cb; /* borders, dividers      */
+    --farbest-warm-grey:     #383838; /* body text              */
+    --farbest-footer-bg:     #1f2f36; /* footer navy            */
+    --farbest-white:         #ffffff;
+
+    /* ── Semantic aliases ───────────────────────────────────────────────── */
+    --color-primary:   var(--farbest-green);
+    --color-cta:       var(--farbest-lime);
+    --color-cta-hover: var(--farbest-lime-dark);
+    --color-cta-text:  var(--farbest-footer-bg);
+    --color-heading:   var(--farbest-heading-green);
+    --color-text:      var(--farbest-warm-grey);
+    --color-bg:        var(--farbest-beige);
+    --color-bg-dark:   var(--farbest-beige-dark);
+    --color-border:    var(--farbest-warm-grey);
+    --color-label:     var(--farbest-moss-green);
+    --color-tag-text:  var(--farbest-teal);
+    --color-tag-bg:    var(--farbest-beige);
+
+    /* ── Layout widths ──────────────────────────────────────────────────── */
+    /* Carried over from the retired theme.json layout settings. */
+    --farbest-content-width: 780px;
+    --farbest-wide-width:    1200px;
+
+    /* ── Type scale ─────────────────────────────────────────────────────── */
+    /* Fluid steps, ported from the retired theme.json fontSizes. */
+    --farbest-font-sm:   clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
+    --farbest-font-md:   clamp(0.875rem, 0.84rem + 0.15vw, 1rem);
+    --farbest-font-lg:   clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
+    --farbest-font-xl:   clamp(1.25rem, 1.19rem + 0.3vw, 1.5rem);
+    --farbest-font-2xl:  clamp(1.5rem, 1.38rem + 0.6vw, 2rem);
+    --farbest-font-3xl:  clamp(2rem, 1.82rem + 0.9vw, 2.75rem);
+
+    /* ── Fonts ──────────────────────────────────────────────────────────── */
+    --farbest-font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

@@ -1,0 +1,306 @@
+/**
+ * Single Ingredient — Block Theme Layout Styles
+ *
+ * Ported from farbest/css/ingredient-single.css.
+ * Classic-theme sidebar/layout selectors (#content, .content-area, .site-main,
+ * .fis-*) have been removed — the block theme's template parts handle layout.
+ * SVG watermark updated to target body class instead of #content::after.
+ *
+ * Scoped to .farbest-ingredient-single so these rules never bleed into
+ * the archive/grid or any other page type.
+ *
+ * Plugin styles (tabs, grid cards, filter UI) are untouched and still
+ * loaded from assets/build/index.css.
+ *
+ * Depends on tokens.css being loaded first.
+ */
+
+/* ── Article wrapper ──────────────────────────────────────────────────────── */
+
+.farbest-ingredient-single {
+    padding: 32px 0;
+}
+
+.farbest-ingredient-single .ingredient-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ── Breadcrumb ───────────────────────────────────────────────────────────── */
+
+.ingredient-breadcrumb {
+    font-size: 0.875rem;
+    color: var(--farbest-warm-grey);
+    margin-bottom: 1rem;
+}
+
+.ingredient-breadcrumb a {
+    color: var(--farbest-warm-grey);
+    text-decoration: none;
+}
+
+.ingredient-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.ingredient-breadcrumb__sep {
+    color: var(--farbest-warm-grey);
+}
+
+.ingredient-breadcrumb__current {
+    color: var(--farbest-warm-grey);
+}
+
+/* ── Header row: title full row, below two columns: content left / category SVG right, then (void) left / CTA right ────────── */
+
+.farbest-ingredient-single .ingredient-header-row {
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    grid-template-areas:
+        "title aside"
+        "left  aside";
+    align-items: start;
+    column-gap: 40px;
+    row-gap: 24px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.farbest-ingredient-single .ingredient-header-left {
+    grid-area: left;
+    min-width: 0;
+}
+
+.farbest-ingredient-single .ingredient-header-aside {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    align-self: stretch;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.farbest-ingredient-single .ingredient-category-icon {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.farbest-ingredient-single .ingredient-category-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .farbest-ingredient-single .ingredient-header-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "aside"
+            "left";
+    }
+
+    .farbest-ingredient-single .ingredient-header-aside {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .farbest-ingredient-single .ingredient-category-icon {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+.farbest-ingredient-single .ingredient-header {
+    grid-area: title;
+    margin-block-start: 6rem;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+}
+
+.farbest-ingredient-single .ingredient-title {
+    margin: 0 0 8px;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+/* ── Certifications row ───────────────────────────────────────────────────── */
+
+.ingredient-certifications__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.ingredient-certifications__logo {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ── Main content: image + info ───────────────────────────────────────────── */
+
+.farbest-ingredient-single .ingredient-main {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px;
+    align-items: flex-start;
+}
+
+.farbest-ingredient-single .ingredient-image {
+    flex: 0 0 260px;
+}
+
+.farbest-ingredient-single .ingredient-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+
+.farbest-ingredient-single .ingredient-info {
+    flex: 1;
+}
+
+.farbest-ingredient-single .ingredient-sheet {
+    margin-top: 16px;
+}
+
+.farbest-ingredient-single .ingredient-sheet-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+@media (max-width: 640px) {
+    .farbest-ingredient-single .ingredient-main {
+        flex-direction: column;
+    }
+
+    .farbest-ingredient-single .ingredient-image {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* ── Description tab panel ────────────────────────────────────────────────── */
+
+.farbest-ingredient-single .ingredient-description {
+    min-height: 400px;
+    color: var(--farbest-moss-green);
+    font-weight: 300;
+}
+
+/* ── Details table ────────────────────────────────────────────────────────── */
+
+.farbest-ingredient-single .ingredient-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.farbest-ingredient-single .ingredient-details-table th,
+.farbest-ingredient-single .ingredient-details-table td {
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.farbest-ingredient-single .ingredient-details-table th {
+    width: 160px;
+    font-weight: 700;
+    color: var(--farbest-teal);
+    white-space: nowrap;
+}
+
+/* ── Related products section ─────────────────────────────────────────────── */
+
+.farbest-ingredient-single .ingredient-related {
+    margin-top: 48px;
+    padding-top: 32px;
+}
+
+/* SVG watermark moved to global.css (loads on all ingredient page types) */
+
+/* ── Benefits columns (ACF benefits_columns repeater) ────────────────────── */
+/* Was the farbest/benefits-columns block pattern; the column layout used to
+   come from wp-block-columns, so it is declared here now. */
+
+.farbest-benefits-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+}
+
+.farbest-benefits-columns__col {
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+.farbest-benefits-columns__heading {
+    margin: 0 0 10px !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--farbest-warm-grey) !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.farbest-benefits-columns__list {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    list-style: none !important;
+    font-size: 1rem;
+    color: var(--farbest-warm-grey);
+    line-height: 1.7;
+}
+
+.farbest-benefits-columns__list li::before {
+    content: "• ";
+    color: var(--farbest-warm-grey);
+}
+
+@media (max-width: 640px) {
+    .farbest-benefits-columns {
+        padding: 16px;
+    }
+}
+
+/* ── Vendors ──────────────────────────────────────────────────────────────── */
+
+.ingredient-vendors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    border-top: 1px solid var(--wp--preset--color--beige);
+}
+
+.ingredient-vendors__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ingredient-vendors__logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.ingredient-vendors__text {
+    font-size: 0.875rem;
+    color: var(--farbest-warm-grey);
+}

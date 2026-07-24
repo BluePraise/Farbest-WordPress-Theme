@@ -1,0 +1,156 @@
+/* ============================================================
+   Farbest Footer
+   ============================================================ */
+
+/* ── Wave shape ────────────────────────────────────────────── */
+.farbest-footer-wave {
+	position: relative;
+	z-index: 2; /* place over the hills SVG in global.css */
+	display: block;
+	line-height: 0;
+	margin-bottom: -2px;
+}
+
+.farbest-footer-wave svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* ── Footer shell ──────────────────────────────────────────── */
+.farbest-footer {
+	position: relative;
+	z-index: 2;
+	background: var(--farbest-footer-bg);
+	color: var(--farbest-beige-dark);
+	padding-top: 3rem;
+	padding-bottom: 2rem;
+}
+
+/* ── 3-column layout ───────────────────────────────────────── */
+.farbest-footer__columns {
+	gap: 3rem;
+	padding-bottom: 2.5rem;
+}
+
+.farbest-footer__col {
+	flex: 1 1 180px;
+	min-width: 160px;
+}
+
+/* ── Logo ──────────────────────────────────────────────────── */
+.farbest-footer__logo img,
+.farbest-footer .wp-block-site-logo img {
+	height: 44px;
+	width: auto;
+	display: block;
+	/* keep logo readable on dark background */
+	filter: brightness(0) invert(1);
+}
+
+/* ── Tagline ───────────────────────────────────────────────── */
+.farbest-footer__tagline {
+	color: var(--farbest-beige-dark);
+	font-size: 0.875rem;
+	margin: 0;
+	line-height: 1.5;
+}
+
+/* ── Column headings ───────────────────────────────────────── */
+.farbest-footer__col-heading {
+	color: var(--farbest-white);
+	font-size: 0.6875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin: 0 0 0.25rem;
+}
+
+/* ── Footer nav ────────────────────────────────────────────── */
+.farbest-footer__nav .wp-block-navigation__container,
+.farbest-footer__nav ul {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.farbest-footer__nav a {
+	color: var(--farbest-beige-dark);
+	font-size: 0.875rem;
+	text-decoration: none;
+	display: block;
+	padding: 0.3rem 0;
+	transition: color 0.2s ease;
+}
+
+.farbest-footer__nav a:hover {
+	color: var(--farbest-lime);
+}
+
+/* ── Contact lines ─────────────────────────────────────────── */
+.farbest-footer__contact-line {
+	color: var(--farbest-beige-dark);
+	font-size: 0.875rem;
+	margin: 0;
+	line-height: 1.6;
+}
+
+/* ── Divider ───────────────────────────────────────────────── */
+.farbest-footer__divider {
+	border-color: #383838 !important;
+	margin: 0 0 1.5rem;
+}
+
+/* ── Bottom bar ────────────────────────────────────────────── */
+.farbest-footer__bottom {
+	gap: 1rem;
+}
+
+.farbest-footer__copyright {
+	color: var(--farbest-beige-dark);
+	font-size: 0.75rem;
+	margin: 0;
+	opacity: 0.7;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 767px) {
+	.farbest-footer__columns {
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.farbest-footer__col {
+		min-width: unset;
+	}
+}
+
+/* ── Classic layout ────────────────────────────────────────────
+   These groups were flex containers in the block markup, so the gap and
+   flex-basis rules above are inert without them. */
+.farbest-footer__columns {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.farbest-footer__col {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+/* Column 1 (logo + tagline) used a wider blockGap than the link columns. */
+.farbest-footer__col--brand {
+	gap: 1rem;
+}
+
+.farbest-footer__bottom {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
