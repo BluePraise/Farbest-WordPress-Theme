@@ -49,20 +49,33 @@ body {
 	display: block;
 }
 
-/* ── Desktop nav ───────────────────────────────────────────── */
+/* ── Desktop nav ───────────────────────────────────────────────
+   Markup is wp_nav_menu() output: ul#primary-menu.menu > li.menu-item
+   (> ul.sub-menu > li.menu-item for dropdowns). Only the TOP-LEVEL list is
+   the horizontal row — the `> ul` child combinator keeps nested .sub-menu
+   lists out of that flex row (a plain descendant selector laid the submenu
+   items inline and broke the bar). */
 .farbest-header__nav {
+	display: flex;
+	align-self: stretch; /* fill the 80px header so dropdowns drop from its base */
+}
+
+.farbest-header__nav > ul {
+	display: flex;
+	align-items: stretch;
+	gap: 3rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.farbest-header__nav > ul > li {
 	display: flex;
 	align-items: center;
 }
 
-.farbest-header__nav .wp-block-navigation__container,
-.farbest-header__nav ul {
-	display: flex;
-	align-items: center;
-	gap: 3rem;
-	list-style: none;
-	margin: 0;
-	padding: 10px 0;
+.farbest-header__nav li {
+	position: relative;
 }
 
 .farbest-header__nav a {
@@ -70,20 +83,75 @@ body {
 	font-size: 0.9375rem;
 	font-weight: 400;
 	text-decoration: none;
+	white-space: nowrap;
 	transition: color 0.2s ease;
 }
 
-.farbest-header__nav a:hover {
+.farbest-header__nav a:hover,
+.farbest-header__nav .menu-item-has-children:hover > a,
+.farbest-header__nav .current-menu-item > a {
 	color: var(--farbest-teal);
 }
 
-ul.wp-block-navigation-submenu {
-	gap: 0.3rem;
+/* Caret on parent items */
+.farbest-header__nav .menu-item-has-children > a::after {
+	content: "";
+	display: inline-block;
+	width: 0.42em;
+	height: 0.42em;
+	margin-left: 0.45em;
+	vertical-align: middle;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
+	transform: translateY(-0.12em) rotate(45deg);
+	transition: transform 0.2s ease;
 }
 
-.wp-block-navigation .has-child .wp-block-navigation__submenu-container>.wp-block-navigation-item>.wp-block-navigation-item__content {
-	border-bottom: 1px solid #ccc;
-	transition: border-color 0.2s ease;
+.farbest-header__nav .menu-item-has-children:hover > a::after,
+.farbest-header__nav .menu-item-has-children:focus-within > a::after {
+	transform: translateY(0.05em) rotate(-135deg);
+}
+
+/* ── Submenu dropdown ──────────────────────────────────────── */
+.farbest-header__nav .sub-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	min-width: 210px;
+	margin: 0;
+	padding: 0.5rem 0;
+	list-style: none;
+	background: var(--farbest-white);
+	border: 1px solid var(--farbest-beige-dark);
+	border-radius: 0 0 6px 6px;
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(6px);
+	transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+	z-index: 20;
+}
+
+.farbest-header__nav .menu-item-has-children:hover > .sub-menu,
+.farbest-header__nav .menu-item-has-children:focus-within > .sub-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.farbest-header__nav .sub-menu li {
+	display: block;
+}
+
+.farbest-header__nav .sub-menu a {
+	display: block;
+	padding: 0.55rem 1.25rem;
+}
+
+.farbest-header__nav .sub-menu a:hover {
+	background: var(--farbest-beige);
+	color: var(--farbest-teal);
 }
 
 /* ── Hamburger button ──────────────────────────────────────── */
@@ -188,6 +256,12 @@ ul.wp-block-navigation-submenu {
 
 .farbest-mobile-menu__nav a:hover {
 	color: var(--farbest-lime);
+}
+
+/* Submenu items in the drawer: indent + slightly smaller so the hierarchy reads */
+.farbest-mobile-menu__nav .sub-menu a {
+	padding-left: 1.5rem;
+	font-size: 1.05rem;
 }
 
 /* ── Overlay ───────────────────────────────────────────────── */
