@@ -94,7 +94,7 @@ body.page-template-page-hills .site-content::after {
     right: 0;
     bottom: 0; /* sits at the content/footer seam and rises into the content */
     background: url('../images/hills_and_valley.svg') no-repeat bottom center;
-    background-size: 100%;
+    background-size: cover; /* match single-ingredient rule so the artwork fills the band */
     height: 100vh;
     z-index: -1;
     pointer-events: none;

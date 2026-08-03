@@ -90,6 +90,19 @@
 	color: var(--farbest-lime);
 }
 
+/* ── Widget links ──────────────────────────────────────────────
+   Footer columns can hold block widgets (Archives, Categories,
+   Recent Posts, etc.) whose links aren't inside .farbest-footer__nav,
+   so they need their own colour to match the footer's link treatment. */
+.farbest-footer .widget a {
+	color: var(--farbest-beige-dark);
+	text-decoration: none;
+}
+
+.farbest-footer .widget a:hover {
+	color: var(--farbest-lime);
+}
+
 /* ── Contact lines ─────────────────────────────────────────── */
 .farbest-footer__contact-line {
 	color: var(--farbest-beige-dark);
@@ -100,7 +113,12 @@
 
 /* ── Divider ───────────────────────────────────────────────── */
 .farbest-footer__divider {
-	border-color: #383838 !important;
+	/* Reset the browser's default inset <hr> border (all four sides, 3D
+	   shaded) to a single flat hairline. #383838 read as invisible here
+	   because it's nearly the same value as --farbest-footer-bg (#1f2f36). */
+	height: 0;
+	border: 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
 	margin: 0 0 1.5rem;
 }
 
