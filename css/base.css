@@ -136,6 +136,41 @@ input[type="button"]:hover,
     width: 100%;
 }
 
+/* Default page template ("Default Template"): widen the content container to
+   the wide width (1200px). Other templates keep the 780px reading measure. */
+body.page-template-default .site-constrained {
+    max-width: var(--farbest-wide-width);
+}
+
+/* ── Editor colour palette classes ──────────────────────────────────────────
+   Front-end (and editor) styles for the palette registered via
+   add_theme_support('editor-color-palette') in functions.php. Without a
+   theme.json WordPress does not generate these, so blocks that use a palette
+   colour would otherwise have no effect on the front end. */
+.has-farbest-green-color { color: var(--farbest-green) !important; }
+.has-farbest-heading-green-color { color: var(--farbest-heading-green) !important; }
+.has-farbest-moss-color { color: var(--farbest-moss-green) !important; }
+.has-farbest-teal-color { color: var(--farbest-teal) !important; }
+.has-farbest-lime-color { color: var(--farbest-lime) !important; }
+.has-farbest-lime-dark-color { color: var(--farbest-lime-dark) !important; }
+.has-farbest-beige-color { color: var(--farbest-beige) !important; }
+.has-farbest-beige-dark-color { color: var(--farbest-beige-dark) !important; }
+.has-farbest-warm-grey-color { color: var(--farbest-warm-grey) !important; }
+.has-farbest-footer-bg-color { color: var(--farbest-footer-bg) !important; }
+.has-farbest-white-color { color: var(--farbest-white) !important; }
+
+.has-farbest-green-background-color { background-color: var(--farbest-green) !important; }
+.has-farbest-heading-green-background-color { background-color: var(--farbest-heading-green) !important; }
+.has-farbest-moss-background-color { background-color: var(--farbest-moss-green) !important; }
+.has-farbest-teal-background-color { background-color: var(--farbest-teal) !important; }
+.has-farbest-lime-background-color { background-color: var(--farbest-lime) !important; }
+.has-farbest-lime-dark-background-color { background-color: var(--farbest-lime-dark) !important; }
+.has-farbest-beige-background-color { background-color: var(--farbest-beige) !important; }
+.has-farbest-beige-dark-background-color { background-color: var(--farbest-beige-dark) !important; }
+.has-farbest-warm-grey-background-color { background-color: var(--farbest-warm-grey) !important; }
+.has-farbest-footer-bg-background-color { background-color: var(--farbest-footer-bg) !important; }
+.has-farbest-white-background-color { background-color: var(--farbest-white) !important; }
+
 /* Editor-emitted alignment classes on images and embeds. */
 .alignleft {
     float: left;

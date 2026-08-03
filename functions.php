@@ -42,6 +42,25 @@ function farbest_setup() {
 		'primary' => __( 'Primary Menu', 'farbest-classic' ),
 		'footer'  => __( 'Footer Menu', 'farbest-classic' ),
 	) );
+
+	// Brand colour palette for the block editor and Kadence pickers. This theme
+	// has no theme.json (by design), so the palette is declared here instead;
+	// the matching `.has-{slug}-color` / `-background-color` classes live in
+	// css/base.css so the colours also render on the front end. Slugs/hex mirror
+	// css/tokens.css — keep them in sync.
+	add_theme_support( 'editor-color-palette', array(
+		array( 'name' => __( 'Green', 'farbest-classic' ),         'slug' => 'farbest-green',         'color' => '#648c1c' ),
+		array( 'name' => __( 'Heading Green', 'farbest-classic' ), 'slug' => 'farbest-heading-green', 'color' => '#4d7b29' ),
+		array( 'name' => __( 'Moss Green', 'farbest-classic' ),    'slug' => 'farbest-moss',          'color' => '#5c643a' ),
+		array( 'name' => __( 'Teal', 'farbest-classic' ),          'slug' => 'farbest-teal',          'color' => '#003e52' ),
+		array( 'name' => __( 'Lime', 'farbest-classic' ),          'slug' => 'farbest-lime',          'color' => '#b5b800' ),
+		array( 'name' => __( 'Lime Dark', 'farbest-classic' ),     'slug' => 'farbest-lime-dark',     'color' => '#9da000' ),
+		array( 'name' => __( 'Beige', 'farbest-classic' ),         'slug' => 'farbest-beige',         'color' => '#f2efe9' ),
+		array( 'name' => __( 'Beige Dark', 'farbest-classic' ),    'slug' => 'farbest-beige-dark',    'color' => '#ddd7cb' ),
+		array( 'name' => __( 'Warm Grey', 'farbest-classic' ),     'slug' => 'farbest-warm-grey',     'color' => '#383838' ),
+		array( 'name' => __( 'Footer Navy', 'farbest-classic' ),   'slug' => 'farbest-footer-bg',     'color' => '#1f2f36' ),
+		array( 'name' => __( 'White', 'farbest-classic' ),         'slug' => 'farbest-white',         'color' => '#ffffff' ),
+	) );
 }
 add_action( 'after_setup_theme', 'farbest_setup' );
 
