@@ -58,4 +58,9 @@
 
     /* ── Fonts ──────────────────────────────────────────────────────────── */
     --farbest-font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Kadence's --global-palette1..9 are NOT declared here on purpose: Kadence
+       prints its own `:root` block inline, which would override anything set in
+       this file. They are filtered in functions.php instead
+       (kadence_blocks_pattern_global_colors). */
 }

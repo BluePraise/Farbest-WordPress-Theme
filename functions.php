@@ -70,6 +70,37 @@ function farbest_setup() {
 add_action( 'after_setup_theme', 'farbest_setup' );
 
 /**
+ * Point Kadence Blocks' global palette at the Farbest brand.
+ *
+ * Kadence blocks emit `var(--global-paletteN, …)` for palette colours. Those
+ * variables are normally supplied by the Kadence *theme*; without it Kadence
+ * hardcodes a stock blue/grey palette into an inline `:root` block, so
+ * client-built blocks default off-brand. It prints that inline (after the
+ * theme's stylesheets), so this cannot be overridden from CSS — this filter is
+ * the supported way in.
+ *
+ * Slots mirror the `kadence_blocks_colors` option (the editor swatch labels);
+ * keep the two in sync, and both in sync with css/tokens.css.
+ *
+ * @param array $colors Map of CSS variable name => hex.
+ * @return array
+ */
+function farbest_kadence_global_palette( $colors ) {
+	return array(
+		'--global-palette1' => '#648c1c', // Farbest green — primary accent
+		'--global-palette2' => '#4d7b29', // heading green
+		'--global-palette3' => '#003e52', // teal — headings
+		'--global-palette4' => '#b5b800', // CTA lime
+		'--global-palette5' => '#5c643a', // moss — labels
+		'--global-palette6' => '#383838', // warm grey — body text
+		'--global-palette7' => '#ddd7cb', // beige dark — borders
+		'--global-palette8' => '#f2efe9', // beige — light surface
+		'--global-palette9' => '#ffffff', // white
+	);
+}
+add_filter( 'kadence_blocks_pattern_global_colors', 'farbest_kadence_global_palette' );
+
+/**
  * Content width used by embeds and oEmbed.
  */
 function farbest_content_width() {
@@ -184,3 +215,4 @@ add_shortcode( 'year', 'farbest_year_shortcode' );
 require get_template_directory() . '/inc/widgets.php';
 require get_template_directory() . '/inc/acf.php';
 require get_template_directory() . '/inc/card-grid.php';
+require get_template_directory() . '/inc/patterns.php';
