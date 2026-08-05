@@ -28,6 +28,11 @@ function farbest_setup() {
 	add_theme_support( 'customize-selective-refresh-widgets' );
 	add_theme_support( 'responsive-embeds' );
 
+	// Expose Wide/Full width controls for core and Kadence blocks. .alignwide /
+	// .alignfull are styled in css/base.css; use the Full Width page template
+	// (page-full-width.php) for true edge-to-edge block layouts.
+	add_theme_support( 'align-wide' );
+
 	add_theme_support( 'html5', array(
 		'search-form',
 		'comment-form',
