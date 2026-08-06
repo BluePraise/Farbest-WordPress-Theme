@@ -101,6 +101,42 @@ function farbest_kadence_global_palette( $colors ) {
 add_filter( 'kadence_blocks_pattern_global_colors', 'farbest_kadence_global_palette' );
 
 /**
+ * Keep Kadence from adding a second copy of the brand palette to the pickers.
+ *
+ * Kadence stores its own editor swatches in the `kadence_blocks_colors` option.
+ * With that option's `override` flag false (its default), Kadence *merges* those
+ * swatches into the theme's palette — `load_color_palette()` in
+ * class-kadence-blocks-settings.php re-registers
+ * `add_theme_support( 'editor-color-palette', array_merge( $theme, $kadence ) )`
+ * at `after_setup_theme` priority 999, and its `block_editor_settings_all` and
+ * `wp_theme_json_data_theme` filters do the same for the editor. Kadence's
+ * dedupe only drops entries that match on colour *and* name *and* slug, so the
+ * brand colours we register above (slugs `farbest-*`) and the ones the option
+ * holds (slugs `palette1..9`) both survive — every brand colour appears twice.
+ *
+ * Emptying the palette here makes the theme the single source of swatches:
+ * every one of Kadence's three code paths bails on an empty array, so the
+ * `farbest-*` palette registered in farbest_setup() stands on its own. Those
+ * slugs are the ones already used in saved content and the ones css/base.css
+ * styles, so they keep rendering even if Kadence is deactivated.
+ *
+ * This does not affect the colours *inside* Kadence blocks: those resolve
+ * `var(--global-paletteN, …)`, which farbest_kadence_global_palette() above
+ * still points at the brand. Drop this filter to hand palette control back to
+ * the Kadence Blocks → Colors settings screen.
+ *
+ * @return string JSON in the shape Kadence expects.
+ */
+function farbest_kadence_editor_palette() {
+	return wp_json_encode( array(
+		'palette'  => array(),
+		'override' => false,
+	) );
+}
+add_filter( 'option_kadence_blocks_colors', 'farbest_kadence_editor_palette' );
+add_filter( 'default_option_kadence_blocks_colors', 'farbest_kadence_editor_palette' );
+
+/**
  * Content width used by embeds and oEmbed.
  */
 function farbest_content_width() {
