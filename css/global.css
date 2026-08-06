@@ -54,7 +54,7 @@ body.single-fpc_ingredient .site-content::after {
     right: 0;
     bottom: calc(-2.35vw - 2px);
     background: url('../images/hills_and_valley.svg') no-repeat bottom left;
-    background-size: cover;
+    background-size: 100%;
     height: 100vh;
     z-index: -2;
     pointer-events: none;
@@ -92,9 +92,10 @@ body.page-template-page-hills .site-content::after {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0; /* sits at the content/footer seam and rises into the content */
+    bottom: 0; 
+	margin-bottom: -80px; /* negative margin to move down the height of the footer wave that clips the dark footer area/footer seam and rises into the content */
     background: url('../images/hills_and_valley.svg') no-repeat bottom center;
-    background-size: cover; /* match single-ingredient rule so the artwork fills the band */
+    background-size: 100%; /* match single-ingredient rule so the artwork fills the band */
     height: 100vh;
     z-index: -1;
     pointer-events: none;
