@@ -57,7 +57,14 @@
     --farbest-font-3xl:  clamp(2rem, 1.82rem + 0.9vw, 2.75rem);
 
     /* ── Fonts ──────────────────────────────────────────────────────────── */
-    --farbest-font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Matches the retired theme.json fontFamilies "open-sans" entry exactly.
+       Headings use the same family — see base.css for the h1–h6 defaults. */
+    --farbest-font-body:    'Open Sans', sans-serif;
+    --farbest-font-heading: var(--farbest-font-body);
+
+    /* Default heading weight. Open Sans Light — the Google Fonts request in
+       functions.php must keep 300 in its `wght` list. */
+    --farbest-heading-weight: 300;
 
     /* Kadence's --global-palette1..9 are NOT declared here on purpose: Kadence
        prints its own `:root` block inline, which would override anything set in

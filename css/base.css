@@ -50,17 +50,24 @@ body {
 
 /* ── Headings (theme.json styles.elements.h1–h6) ────────────────────────── */
 
+/* Family and weight are declared on the group so every heading sitewide gets
+   Open Sans Light by default; only the size varies per level. Individual
+   components (card titles, table headers, the benefits columns) still set their
+   own weight where the design calls for it. */
+
 h1, h2, h3, h4, h5, h6 {
     color: var(--color-heading);
+    font-family: var(--farbest-font-heading);
+    font-weight: var(--farbest-heading-weight);
     line-height: 1.25;
 }
 
-h1 { font-size: var(--farbest-font-3xl); font-weight: 700; }
-h2 { font-size: var(--farbest-font-2xl); font-weight: 700; }
-h3 { font-size: var(--farbest-font-xl);  font-weight: 600; }
-h4 { font-size: var(--farbest-font-lg);  font-weight: 600; }
-h5 { font-size: var(--farbest-font-md);  font-weight: 600; }
-h6 { font-size: var(--farbest-font-md);  font-weight: 600; }
+h1 { font-size: var(--farbest-font-3xl); }
+h2 { font-size: var(--farbest-font-2xl); }
+h3 { font-size: var(--farbest-font-xl);  }
+h4 { font-size: var(--farbest-font-lg);  }
+h5 { font-size: var(--farbest-font-md);  }
+h6 { font-size: var(--farbest-font-md);  }
 
 /* ── Flow spacing ───────────────────────────────────────────────────────── */
 /* theme.json set blockGap to 0 and let each block carry its own margins. In a
