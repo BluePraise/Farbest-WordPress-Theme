@@ -61,10 +61,20 @@ The plugin also owns the `benefits_columns` ACF repeater and its markup.
 
 ## Card Grid
 
-`inc/card-grid.php` registers the `group_card_grid` ACF repeater, scoped to
-`page_template == page-card-grid.php`, and exposes `farbest_render_card_grid( $post_id )`.
-The flip interaction is pure CSS — no JavaScript. Client workflow: assign the "Card Grid"
-template to a page, then fill in the "Cards" meta box below the editor.
+`inc/card-grid.php` exposes `farbest_render_card_grid( $post_id )`. The `group_card_grid`
+repeater it used to register in PHP now lives in `acf-json/group_card_grid.json` (scoped to
+`page_template == page-card-grid.php`), because ACF hides PHP-registered groups from the
+Custom Fields → Field Groups screen. The flip interaction is pure CSS — no JavaScript.
+Client workflow: assign the "Card Grid" template to a page, then fill in the "Cards" meta box
+below the editor.
+
+## ACF field groups
+
+`inc/acf.php` registers `acf-json/` as ACF's Local JSON load **and** save point. The theme owns
+only `group_card_grid`; the ingredient/category groups are Local JSON inside the catalog plugin,
+which appends its own load point and routes its own saves back to itself. On a fresh environment
+the groups show up under Custom Fields → Field Groups → **Sync available** — they already work
+before syncing; syncing just makes them editable in the admin.
 
 ## Widget areas
 

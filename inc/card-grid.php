@@ -19,88 +19,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register the Cards repeater, scoped to the Card Grid page template.
+ * The "Cards" repeater (group_card_grid) is no longer registered here in PHP.
+ * It lives as ACF Local JSON in acf-json/group_card_grid.json, loaded and saved
+ * via the load/save points in inc/acf.php.
  *
- * The location rule targets the classic template filename. In the block theme
- * this was the bare template slug `page-card-grid`; ACF matches
- * _wp_page_template, which for a classic theme stores `page-card-grid.php`.
+ * The move was needed because ACF hides PHP-registered field groups from the
+ * Custom Fields → Field Groups screen; as Local JSON the group shows up there
+ * (under "Sync available" until it is synced) and can be edited in the admin.
+ * The field keys are unchanged, so existing `cards` data is untouched.
+ *
+ * The location rule still targets `page-card-grid.php` — ACF matches
+ * _wp_page_template, which for a classic theme stores the filename, not the
+ * bare `page-card-grid` slug the block theme used.
  */
-function farbest_register_card_grid_fields() {
-	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-		return;
-	}
-
-	acf_add_local_field_group( array(
-		'key'    => 'group_card_grid',
-		'title'  => 'Cards',
-		'fields' => array(
-			array(
-				'key'          => 'field_cards',
-				'label'        => 'Cards',
-				'name'         => 'cards',
-				'type'         => 'repeater',
-				'layout'       => 'block',
-				'button_label' => 'Add Card',
-				'sub_fields'   => array(
-					array(
-						'key'           => 'field_card_image',
-						'label'         => 'Photo',
-						'name'          => 'card_image',
-						'type'          => 'image',
-						'return_format' => 'array',
-						'preview_size'  => 'medium',
-						'library'       => 'all',
-					),
-					array(
-						'key'   => 'field_card_name',
-						'label' => 'Name',
-						'name'  => 'card_name',
-						'type'  => 'text',
-					),
-					array(
-						'key'   => 'field_card_role',
-						'label' => 'Role',
-						'name'  => 'card_role',
-						'type'  => 'text',
-					),
-					array(
-						'key'   => 'field_card_bio',
-						'label' => 'Bio',
-						'name'  => 'card_bio',
-						'type'  => 'textarea',
-						'rows'  => 3,
-					),
-					array(
-						'key'   => 'field_card_email',
-						'label' => 'Email',
-						'name'  => 'card_email',
-						'type'  => 'email',
-					),
-					array(
-						'key'   => 'field_card_linkedin',
-						'label' => 'LinkedIn URL',
-						'name'  => 'card_linkedin',
-						'type'  => 'url',
-					),
-					array(
-						'key'   => 'field_card_phone',
-						'label' => 'Phone',
-						'name'  => 'card_phone',
-						'type'  => 'text',
-					),
-				),
-			),
-		),
-		'location' => array( array( array(
-			'param'    => 'page_template',
-			'operator' => '==',
-			'value'    => 'page-card-grid.php',
-		) ) ),
-		'position' => 'normal',
-		'active'   => true,
-	) );
-}
-add_action( 'acf/init', 'farbest_register_card_grid_fields' );
 
 /**
  * Render the card grid for a post.
