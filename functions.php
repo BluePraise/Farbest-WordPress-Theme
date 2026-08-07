@@ -252,3 +252,17 @@ require get_template_directory() . '/inc/widgets.php';
 require get_template_directory() . '/inc/acf.php';
 require get_template_directory() . '/inc/card-grid.php';
 require get_template_directory() . '/inc/patterns.php';
+
+/**
+ * Contact Form 7 - capture the referer page
+ */
+add_filter('wpcf7_form_tag', 'capture_cf7_referer_page');
+function capture_cf7_referer_page($form_tag) {
+    // Check if this is our targeted hidden field
+    if ($form_tag['name'] == 'referer-page') {
+        // Grab the HTTP referer securely if it exists
+        $referer = isset($_SERVER['HTTP_REFERER']) ? esc_url($_SERVER['HTTP_REFERER']) : 'Direct / No Referrer';
+        $form_tag['values'] = array($referer);
+    }
+    return $form_tag;
+}
