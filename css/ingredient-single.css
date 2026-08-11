@@ -63,7 +63,7 @@
     align-items: start;
     column-gap: 40px;
     row-gap: 24px;
-    margin-bottom: 32px;
+    /*margin-bottom: 32px;*/
     position: relative;
     z-index: 1;
 }
@@ -90,7 +90,7 @@
    letting each file's own intrinsic size decide — without this the box shrinks
    to fit and icons render at inconsistent sizes across categories. */
 .farbest-ingredient-single .ingredient-category-icon {
-    width: clamp(120px, 14vw, 180px);
+   /* width: clamp(120px, 14vw, 180px);*/
     aspect-ratio: 1;
     display: flex;
     align-items: center;
@@ -203,7 +203,7 @@
 /* ── Description tab panel ────────────────────────────────────────────────── */
 
 .farbest-ingredient-single .ingredient-description {
-    min-height: 400px;
+    min-height: 200px;
     /* Match the Product Details tab: same size, darker colour, normal weight. */
     font-size: 0.9375rem;
     color: #444;
@@ -251,7 +251,8 @@
     flex-wrap: wrap;
     gap: 24px;
     padding: 20px 24px;
-    margin-bottom: 28px;
+	margin-top: -40px;
+    /*margin-bottom: 28px;*/
 }
 
 .farbest-benefits-columns__col {
