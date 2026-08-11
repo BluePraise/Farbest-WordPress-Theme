@@ -102,10 +102,15 @@
    It still lives inside .ingredient-header-aside in the markup, but is taken
    out of flow and anchored to .ingredient-header-row so it sits behind the
    title. z-index: -1 is contained by the row's own stacking context, so the
-   icon drops behind the title without disappearing behind the page. Tune
-   --ingredient-icon-opacity if it competes with the heading. */
+   icon drops behind the title without disappearing behind the page.
+
+   Full opacity by default: now that the title spans the full width, the icon
+   sits in the empty space to its right and does not actually fall under the
+   text, so there is nothing to knock it back for — and z-index: -1 already
+   covers the case where a long title does reach across it. Dial
+   --ingredient-icon-opacity down for a faded watermark instead. */
 .farbest-ingredient-single .ingredient-category-icon {
-    --ingredient-icon-opacity: 0.15;
+    --ingredient-icon-opacity: 1;
 
     position: absolute;
     top: var(--ingredient-header-offset);
