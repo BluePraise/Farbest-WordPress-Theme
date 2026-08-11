@@ -62,6 +62,10 @@
        stays aligned with the title without repeating the value. */
     --ingredient-header-offset: 6rem;
 
+    /* One source of truth for the icon box: the icon sizes itself from this,
+       and the CTA below uses it to work out how far to clear. */
+    --ingredient-icon-size: clamp(120px, 14vw, 180px);
+
     display: grid;
     grid-template-columns: 1fr 40%;
     grid-template-areas:
@@ -92,6 +96,13 @@
     align-items: flex-end;
     justify-content: flex-start;
     gap: 24px;
+
+    /* The icon is anchored to the top of the title and overhangs down into this
+       row, so start the CTA below it. The 4.5rem subtracted is roughly the
+       title's own height plus the row-gap — i.e. how much of the icon the title
+       row already covers. If a title ever wraps to two lines this over-clears
+       slightly, which just adds space rather than causing an overlap. */
+    margin-block-start: max(0px, calc(var(--ingredient-icon-size) - 4.5rem));
 }
 
 /* The icon is a circle SVG resolved per ingredient (FPC_Icons in the catalog
@@ -119,7 +130,7 @@
     opacity: var(--ingredient-icon-opacity);
     pointer-events: none;
 
-    width: clamp(120px, 14vw, 180px);
+    width: var(--ingredient-icon-size);
     aspect-ratio: 1;
     display: flex;
     align-items: center;
@@ -146,6 +157,8 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        /* Icon is back in flow here, so there is nothing to clear. */
+        margin-block-start: 0;
     }
 
     /* No watermark on narrow screens — behind a heading at this width it costs
