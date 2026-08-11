@@ -52,13 +52,20 @@
     color: var(--farbest-warm-grey);
 }
 
-/* ── Header row: title full row, below two columns: content left / category SVG right, then (void) left / CTA right ────────── */
+/* ── Header row: title across the full width, then content left / CTA right ──
+   The title used to share row 1 with the icon column, which squeezed longer
+   product names onto three lines. It now spans both columns and the category
+   icon sits behind it as a watermark (see .ingredient-category-icon below). */
 
 .farbest-ingredient-single .ingredient-header-row {
+    /* Shared by the title's top margin and the watermark's offset, so the icon
+       stays aligned with the title without repeating the value. */
+    --ingredient-header-offset: 6rem;
+
     display: grid;
     grid-template-columns: 1fr 40%;
     grid-template-areas:
-        "title aside"
+        "title title"
         "left  aside";
     align-items: start;
     column-gap: 40px;
@@ -73,24 +80,41 @@
     min-width: 0;
 }
 
+/* Holds only the CTA now that the icon is a watermark, so there is nothing left
+   to distribute — hence flex-start rather than space-between.
+   It must NOT be positioned: `position: relative` here would make it the
+   watermark's containing block, and its `z-index` would trap the icon in this
+   element's stacking context, painting it over the title instead of behind it. */
 .farbest-ingredient-single .ingredient-header-aside {
     grid-area: aside;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: space-between;
-    align-self: stretch;
+    justify-content: flex-start;
     gap: 24px;
-    position: relative;
-    z-index: 1;
 }
 
 /* The icon is a circle SVG resolved per ingredient (FPC_Icons in the catalog
    plugin), so the artwork varies. Give it a fixed square box rather than
    letting each file's own intrinsic size decide — without this the box shrinks
-   to fit and icons render at inconsistent sizes across categories. */
+   to fit and icons render at inconsistent sizes across categories.
+
+   It still lives inside .ingredient-header-aside in the markup, but is taken
+   out of flow and anchored to .ingredient-header-row so it sits behind the
+   title. z-index: -1 is contained by the row's own stacking context, so the
+   icon drops behind the title without disappearing behind the page. Tune
+   --ingredient-icon-opacity if it competes with the heading. */
 .farbest-ingredient-single .ingredient-category-icon {
-   /* width: clamp(120px, 14vw, 180px);*/
+    --ingredient-icon-opacity: 0.15;
+
+    position: absolute;
+    top: var(--ingredient-header-offset);
+    right: 0;
+    z-index: -1;
+    opacity: var(--ingredient-icon-opacity);
+    pointer-events: none;
+
+    width: clamp(120px, 14vw, 180px);
     aspect-ratio: 1;
     display: flex;
     align-items: center;
@@ -119,7 +143,12 @@
         align-items: center;
     }
 
+    /* No watermark on narrow screens — behind a heading at this width it costs
+       more legibility than it buys. Back into flow beside the CTA, as before. */
     .farbest-ingredient-single .ingredient-category-icon {
+        position: static;
+        z-index: auto;
+        opacity: 1;
         width: 120px;
     }
 }
@@ -128,7 +157,7 @@
 
 .farbest-ingredient-single .ingredient-header {
     grid-area: title;
-    margin-block-start: 6rem;
+    margin-block-start: var(--ingredient-header-offset);
     margin-bottom: 24px;
     padding-bottom: 16px;
 }
