@@ -194,6 +194,16 @@ function farbest_scripts() {
 		);
 	}
 
+	// The team grid: its own archive, or any page carrying the shortcode.
+	if ( is_post_type_archive( 'farbest_team' ) || farbest_post_has_team_grid() ) {
+		wp_enqueue_style(
+			'farbest-team',
+			$uri . '/css/team.css',
+			array( 'farbest-tokens' ),
+			farbest_asset_version( 'css/team.css' )
+		);
+	}
+
 	// Markup for these pages comes from the Farbest Product Catalog plugin;
 	// the theme supplies the layout.
 	if ( is_singular( 'fpc_ingredient' ) ) {
@@ -233,10 +243,17 @@ add_action( 'after_setup_theme', 'farbest_editor_styles' );
  * Sort archive queries alphabetically.
  */
 function farbest_archive_sort_order( $query ) {
-	if ( ! is_admin() && $query->is_main_query() && $query->is_archive() ) {
-		$query->set( 'orderby', 'title' );
-		$query->set( 'order', 'ASC' );
+	if ( is_admin() || ! $query->is_main_query() || ! $query->is_archive() ) {
+		return;
 	}
+
+	// The team archive is ranked by hand via the Order field, so leave it be.
+	if ( $query->is_post_type_archive( 'farbest_team' ) ) {
+		return;
+	}
+
+	$query->set( 'orderby', 'title' );
+	$query->set( 'order', 'ASC' );
 }
 add_action( 'pre_get_posts', 'farbest_archive_sort_order' );
 
@@ -251,6 +268,7 @@ add_shortcode( 'year', 'farbest_year_shortcode' );
 require get_template_directory() . '/inc/widgets.php';
 require get_template_directory() . '/inc/acf.php';
 require get_template_directory() . '/inc/card-grid.php';
+require get_template_directory() . '/inc/team.php';
 require get_template_directory() . '/inc/patterns.php';
 
 /**

@@ -1,0 +1,141 @@
+{
+    "key": "group_team_member",
+    "title": "Team Member Details",
+    "fields": [
+        {
+            "key": "field_team_role",
+            "label": "Role",
+            "name": "team_role",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Job title as it should appear under the name, e.g. \"Senior Vice President\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_team_bio_heading",
+            "label": "Bio Heading",
+            "name": "team_bio_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Heading above the bio. Leave blank to use \"Meet {first name}\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Meet Dan",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_team_bio",
+            "label": "Bio",
+            "name": "team_bio",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Shown in the panel that slides out when the card is hovered.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_team_email",
+            "label": "Email",
+            "name": "team_email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Optional. Adds an email link to the bio panel.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_team_phone",
+            "label": "Phone",
+            "name": "team_phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Shown as typed; the link strips formatting.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "(732) 555-0100",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_team_linkedin",
+            "label": "LinkedIn URL",
+            "name": "team_linkedin",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Optional. Full profile URL.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://www.linkedin.com/in/"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "farbest_team"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Role, bio, and contact details for a Team Member. The photo is the Featured Image and the name is the post title.",
+    "show_in_rest": 0,
+    "modified": 1756339200
+}
